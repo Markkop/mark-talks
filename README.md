@@ -1,9 +1,11 @@
-<h1 align="center">Mark Talks CMS</h1>
+# 📜 Mark Talks CMS
 
-[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
-[![Uploadthing](https://img.shields.io/badge/Uploadthing-333333?style=for-the-badge&logo=uploadthing&logoColor=white)](https://uploadthing.com/)
-[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcn&logoColor=white)](https://ui.shadcn.com/)
+[![next.js](https://img.shields.io/badge/-next.js-blue)](https://nextjs.org/)
+[![prisma](https://img.shields.io/badge/-prisma-5966d8)](https://prisma.io/)
+[![supabase](https://img.shields.io/badge/-supabase-3ECF8E)](https://supabase.com/)
+[![uploadthing](https://img.shields.io/badge/-uploadthing-e91316)](https://uploadthing.com/)
+[![shadcn](https://img.shields.io/badge/-shadcn%2Fui-gray)](https://ui.shadcn.com/)
+[![clerk](https://img.shields.io/badge/-clerk-white)](https://clerk.com/)
 
 Mark Talks CMS is a website to share and manage my talks and presentations.
 
