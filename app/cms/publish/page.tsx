@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { storeTalks } from "@/utils/actions/talks/store-talks";
 import { UploadButton } from "@/utils/uploadthing";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -90,6 +90,20 @@ export default function PublishPage() {
       console.log("error", error);
       toast("Error publishing talk");
     }
+  };
+
+  const handleUploadComplete = (res: any) => {
+    console.log("Files: ", res);
+    const uploadedFileUrl = res[0].url;
+    setTalk((prevTalk) => ({
+      ...prevTalk,
+      image: uploadedFileUrl,
+    }));
+    toast(`Image uploaded`);
+  };
+
+  const handleUploadError = (error: Error) => {
+    toast(`ERROR! ${error.message}`);
   };
 
   return (
@@ -206,15 +220,29 @@ export default function PublishPage() {
               <Label>Talk Image</Label>
               <UploadButton
                 endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                  setTalk((prevTalk) => ({
-                    ...prevTalk,
-                    image: res?.[0]?.url || prevTalk.image,
-                  }));
-                  toast(`Image uploaded`);
+                onClientUploadComplete={handleUploadComplete}
+                onUploadError={handleUploadError}
+                appearance={{
+                  button: ({ isUploading }) =>
+                    `bg-blue-500 text-white rounded-md px-4 py-2 ${
+                      isUploading
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-blue-600"
+                    }`,
+                  allowedContent: "text-gray-600 text-sm",
                 }}
-                onUploadError={(error: Error) => {
-                  toast(`ERROR! ${error.message}`);
+                content={{
+                  button({ isUploading }) {
+                    if (isUploading)
+                      return (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Uploading...
+                        </>
+                      );
+                    return "Upload Image";
+                  },
+                  allowedContent: "Images up to 4MB",
                 }}
               />
             </div>
