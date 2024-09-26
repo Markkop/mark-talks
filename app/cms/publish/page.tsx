@@ -69,7 +69,7 @@ export default function PublishPage() {
         "", // subtitle
         "", // slug
         talk.description,
-        talk.keywords.join(", "),
+        talk.keywords.join(", "), // Join keywords into a single string
         talk.image,
         "" // image_alt
       );

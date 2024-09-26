@@ -10,6 +10,5 @@ export interface Talk {
   published: boolean;
   image: string;
   image_alt: string;
-  // Add any additional fields relevant to Talk
 }
 

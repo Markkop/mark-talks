@@ -1,10 +1,54 @@
-model Blog {
-  id       String   @id @default(cuid())
-  title    String
-  content  String
-  // Remove the category_id field
-  // category_id String
+generator client {
+  provider = "prisma-client-js"
 }
 
-// Remove the entire category model
-// Remove the category_id field from any other models that reference it
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model user {
+  id                Int      @id @default(autoincrement())
+  created_at        DateTime @default(now())
+  email             String   @unique
+  first_name        String?
+  last_name         String?
+  profile_image_url String?
+  user_id           String   @unique
+}
+
+
+model blog {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  user_id     String
+  blog_html   String
+  image       String
+  image_alt   String
+  title       String
+  subtitle    String
+  slug        String
+  keywords    String[]
+}
+
+model Talk {
+  id                String   @id @default(cuid())
+  created_at        DateTime @default(now())
+  title             String
+  subtitle          String?
+  slug              String   @unique
+  description       String?
+  keywords          String   // Changed from String[] to String
+  shareable         Boolean  @default(false)
+  published         Boolean  @default(false)
+  image             String?
+  image_alt         String?
+  talk_html         String?
+  presentation_link String?
+  feedback_link     String?
+  location          String?
+  user_id           String
+
+  @@index([user_id])
+}
