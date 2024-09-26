@@ -1,7 +1,6 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export const deleteBlog = async (slug: string) => {
@@ -34,7 +33,6 @@ export const deleteBlog = async (slug: string) => {
 
     if (error?.code) return error;
 
-    revalidatePath("/cms/documents");
 
     return data;
   } catch (error: any) {

@@ -18,21 +18,6 @@ model user {
   user_id           String   @unique
 }
 
-model documents {
-  id          Int      @id @default(autoincrement())
-  created_at  DateTime @default(now())
-  document_id String   @unique @default(uuid())
-  document    String
-  title       String
-  user_id     String
-}
-
-model category {
-  id       Int    @id @default(autoincrement())
-  user_id  String
-  category String
-}
-
 model blog {
   id          Int      @id @default(autoincrement())
   created_at  DateTime @default(now())

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { getAllArticles } from "@/utils/actions/articles/get-all-articles";
 import { StopCircle, VerifiedIcon } from "lucide-react";
 import Image from "next/image";
@@ -50,9 +49,6 @@ export default async function CMS() {
                 <p className="text-sm text-muted-foreground mb-3">
                   Articles will show here once you&apos;ve published articles
                 </p>
-                <Link href="/cms/documents">
-                  <Button>My Documents</Button>
-                </Link>
               </div>
             </div>
           </main>

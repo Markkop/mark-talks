@@ -16,11 +16,3 @@ export interface Article {
   published: boolean;
 }
 
-export interface Document {
-  id: number;
-  created_at: string;
-  document_id: string;
-  document: string;
-  title: string;
-  user_id: string;
-}

@@ -11,15 +11,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { storeArticles } from "@/utils/actions/articles/store-articles";
-import { useGetAllDocuments } from "@/utils/hooks/useGetAllDocuments";
 import { UploadButton } from "@/utils/uploadthing";
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/react/style.css";
@@ -53,11 +46,6 @@ export default function Publish() {
 
   const [imageUploadUrl, setImageUploadUrl] = useState<string>("");
 
-  const { data: documentData } = useGetAllDocuments();
-  if (documentData?.code) {
-    console.error(documentData);
-  }
-
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       const response = await storeArticles(
@@ -85,9 +73,7 @@ export default function Publish() {
         <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
           Publish
         </h1>
-        <p className="leading-7">
-          Get ready to publish articles that have been written and saved
-        </p>
+        <p className="leading-7">Get ready to publish your article</p>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -202,38 +188,26 @@ export default function Publish() {
                 </FormItem>
               )}
             />
-            <div className="flex justify-center items-center w-full gap-3">
-              <FormField
-                control={form.control}
-                name="article"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Document</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a document" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {Array.isArray(documentData) &&
-                          documentData.map((info: any) => (
-                            <div key={info?.id}>
-                              <SelectItem value={info?.document}>
-                                {info?.title}
-                              </SelectItem>
-                            </div>
-                          ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="article"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Article Content</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Write your article content here"
+                      {...field}
+                      rows={10}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This is your article content.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit">Submit</Button>
           </form>
         </Form>
