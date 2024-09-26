@@ -4,10 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export const shareArticle = async (
-  slug: string,
-  shareable: boolean
-) => {
+export const updateTalk = async (slug: string, talk: string) => {
   const { userId } = auth();
 
   if (!userId) {
@@ -30,10 +27,10 @@ export const shareArticle = async (
 
   try {
     const { data, error } = await supabase
-      .from("blog")
+      .from("talks") // Changed from "blog" to "talks"
       .update([
         {
-          shareable,
+          talk_html: talk, // Updated field
         },
       ])
       .eq("user_id", userId)

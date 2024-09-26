@@ -38,7 +38,7 @@ export default function DashboardNavMobile() {
             <DialogClose asChild>
               <Link href="/cms/publish">
                 <Button variant="outline" className="w-full">
-                  Publish Article
+                  Publish Talk
                 </Button>
               </Link>
             </DialogClose>

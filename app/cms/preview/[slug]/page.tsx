@@ -1,24 +1,24 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getAllArticleBySlug } from "@/utils/actions/articles/get-article-slug";
+import { getAllTalksBySlug } from "@/utils/actions/talks/get-talk-slug";
 import { transformNode } from "@/utils/transform-node";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactHtmlParser from "react-html-parser";
-import ManageArticle from "../(components)/ManageArticle";
+import ManageTalk from "../(components)/ManageTalk";
 
-export default async function BlogPostPage({
+export default async function TalkPostPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const response = await getAllArticleBySlug(params?.slug);
+  const response = await getAllTalksBySlug(params?.slug);
 
   return (
     <main className="flex min-w-screen flex-col items-center justify-between ">
-      <ManageArticle response={response} params={params} />
-      <article className="container relative max-w-3xl pt-3 pb-6 lg:pb-10">
+      <ManageTalk response={response} params={params} />
+      <talk className="container relative max-w-3xl pt-3 pb-6 lg:pb-10">
         <div>
           <p className="block text-sm text-muted-foreground">
             Published on{" "}
@@ -36,7 +36,7 @@ export default async function BlogPostPage({
           className="my-8 rounded-md border bg-muted transition-colors"
           priority
         />
-        {ReactHtmlParser(response?.[0]?.blog_html, {
+        {ReactHtmlParser(response?.[0]?.talk_html, {
           transform: transformNode,
         })}
         <hr className="mt-12" />
@@ -46,10 +46,10 @@ export default async function BlogPostPage({
             className={cn(buttonVariants({ variant: "ghost" }))}
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
-            See all posts
+            See all talks
           </Link>
         </div>
-      </article>
+      </talk>
     </main>
   );
 }

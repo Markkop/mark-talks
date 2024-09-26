@@ -1,9 +1,16 @@
 "use server";
-import { clerkClient } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export const getArticlesApi = async (userId: string) => {
+export const deleteTalk = async (slug: string) => {
+  const { userId } = auth();
+
+  if (!userId) {
+    return null;
+  }
+
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -19,17 +26,16 @@ export const getArticlesApi = async (userId: string) => {
   );
 
   try {
-    const result = await clerkClient.users.getUser(userId!);
-
     const { data, error } = await supabase
-      .from("blog")
-      .select("*")
-      .eq("user_id", result?.id);
+      .from("talks")
+      .delete()
+      .eq("user_id", userId)
+      .eq("slug", slug)
+      .select();
 
-    if (error?.code)
-      return {
-        error,
-      };
+    if (error?.code) return error;
+
+    revalidatePath("/cms");
 
     return data;
   } catch (error: any) {

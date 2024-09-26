@@ -1,4 +1,3 @@
-
 export default function ApiPage() {
   return (
     <main className="flex w-full mt-[1rem] flex-col items-center justify-between ">
@@ -7,12 +6,12 @@ export default function ApiPage() {
         <div className="flex flex-col w-full gap-8">
           <div className="flex flex-col justify-center items-start w-full gap-3">
             <h2 className="mt-10 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors first:mt-0">
-              GET - Retrieve All Blogs
+              GET - Retrieve All Talks
             </h2>
             <pre className="bg-gray-950 p-4 rounded-md max-w-[600px]">
               <code className="text-gray-50 font-mono">
                 {`const response = await fetch(
-  \`\https://cms.rasmic.xyz/api/blog/all\`,
+  \`\https://cms.rasmic.xyz/api/talks/all\`,
   {
     headers: {
       "X-Auth-Key": API_KEY,
@@ -23,13 +22,13 @@ export default function ApiPage() {
             </pre>
           </div>
           <div className="flex flex-col justify-center items-start w-full gap-3">
-          <h2 className="mt-10 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors first:mt-0">
-              GET - Retrieve All Slugs
+            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors first:mt-0">
+              GET - Retrieve All Talk Slugs
             </h2>
             <pre className="bg-gray-950 p-4 rounded-md max-w-[600px]">
               <code className="text-gray-50 font-mono">
                 {`const response = await fetch(
-  \`\https://cms.rasmic.xyz/api/blog/slugs\`,
+  \`\https://cms.rasmic.xyz/api/talks/slugs\`,
   {
     headers: {
       "X-Auth-Key": API_KEY,
@@ -40,13 +39,13 @@ export default function ApiPage() {
             </pre>
           </div>
           <div className="flex flex-col justify-center items-start w-full gap-3">
-          <h2 className="mt-10 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors first:mt-0">
-              POST - Retrieve Article By Slugs
+            <h2 className="mt-10 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors first:mt-0">
+              POST - Retrieve Talk By Slug
             </h2>
             <pre className="bg-gray-950 p-4 rounded-md max-w-[600px]">
               <code className="text-gray-50 font-mono">
                 {`const response = await fetch(
-  \`\https://cms.rasmic.xyz/api/blog/[slug]\`,
+  \`\https://cms.rasmic.xyz/api/talks/[slug]\`,
   {
     method: "POST",
     headers: {
@@ -59,5 +58,6 @@ export default function ApiPage() {
           </div>
         </div>
       </div>
-    </main >)
+    </main>
+  );
 }

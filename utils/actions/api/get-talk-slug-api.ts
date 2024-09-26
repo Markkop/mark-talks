@@ -3,7 +3,7 @@ import { clerkClient } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const getArticleBySlugApi = async (slug: string, userId: string) => {
+export const getTalkBySlugApi = async (slug: string, userId: string) => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -21,7 +21,7 @@ export const getArticleBySlugApi = async (slug: string, userId: string) => {
     const result = await clerkClient.users.getUser(userId!);
 
     const { data, error } = await supabase
-      .from("blog")
+      .from("talks")
       .select(`*`)
       .eq("slug", slug)
       .eq("user_id", result?.id);

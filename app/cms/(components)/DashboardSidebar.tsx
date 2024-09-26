@@ -42,7 +42,7 @@ export default function DashboardNav() {
               href="/cms/publish"
             >
               <BookA className="h-4 w-4" />
-              Publish Article
+              Publish Talk
             </Link>
             <Link
               className={clsx(

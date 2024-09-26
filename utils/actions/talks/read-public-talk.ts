@@ -2,7 +2,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const readPublicArticle = async (id: string) => {
+export const readPublicTalk = async (id: string) => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -18,7 +18,7 @@ export const readPublicArticle = async (id: string) => {
   );
   try {
     const { data, error } = await supabase
-      .from("blog")
+      .from("talks")
       .select(`*`)
       .eq("id", id)
       .eq("shareable", true);

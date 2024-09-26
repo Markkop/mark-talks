@@ -1,14 +1,19 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export const getAllArticleBySlug = async (slug: string) => {
+export const shareTalk = async (
+  slug: string,
+  shareable: boolean
+) => {
   const { userId } = auth();
 
   if (!userId) {
     return null;
   }
+
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -22,14 +27,22 @@ export const getAllArticleBySlug = async (slug: string) => {
       },
     }
   );
+
   try {
     const { data, error } = await supabase
-      .from("blog")
-      .select(`*`)
+      .from("talks")
+      .update([
+        {
+          shareable,
+        },
+      ])
+      .eq("user_id", userId)
       .eq("slug", slug)
-      .eq("user_id", userId);
+      .select();
 
     if (error?.code) return error;
+
+    revalidatePath("/cms");
 
     return data;
   } catch (error: any) {

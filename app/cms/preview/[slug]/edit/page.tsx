@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useGetArticleBySlug } from "@/utils/hooks/useGetArticleBySlug";
+import { useGetTalkBySlug } from "@/utils/hooks/useGetTalkBySlug";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { ImageIcon } from "lucide-react";
 import { useCallback, useEffect } from "react";
-import { UpdateArticle } from "../../(components)/UpdateArticle";
+import { UpdateTalk } from "../../(components)/UpdateTalk";
 import "./styles.scss";
 
 const MenuBar = ({ editor }: any) => {
@@ -191,13 +191,9 @@ const MenuBar = ({ editor }: any) => {
   );
 };
 
-export default function ArticleEditor({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function TalkEditor({ params }: { params: { slug: string } }) {
   // console.log('params', params)
-  const { data } = useGetArticleBySlug(params?.slug);
+  const { data } = useGetTalkBySlug(params?.slug);
 
   const extensions: any = [
     StarterKit.configure({
@@ -231,10 +227,10 @@ export default function ArticleEditor({
   }) as any;
 
   useEffect(() => {
-    if (editor && data?.[0]?.blog_html) {
-      editor.commands.setContent(data?.[0]?.blog_html);
+    if (editor && data?.[0]?.talk_html) {
+      editor.commands.setContent(data?.[0]?.talk_html);
     }
-  }, [editor, data?.[0]?.blog_html]);
+  }, [editor, data?.[0]?.talk_html]);
 
   const html = editor?.getHTML();
 
@@ -334,7 +330,7 @@ export default function ArticleEditor({
           <EditorContent editor={editor} />
         </div>
         <div className="mt-4 w-full">
-          <UpdateArticle slug={params?.slug} html={html} />
+          <UpdateTalk slug={params?.slug} html={html} />
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { storeArticles } from "@/utils/actions/articles/store-articles";
+import { storeTalks } from "@/utils/actions/talks/store-talks";
 import { UploadButton } from "@/utils/uploadthing";
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/react/style.css";
@@ -28,7 +28,7 @@ const FormSchema = z.object({
   slug: z.string(),
   keywords: z.string(),
   image_alt: z.string(),
-  article: z.string(),
+  description: z.string(),
 });
 
 export default function Publish() {
@@ -40,7 +40,7 @@ export default function Publish() {
       slug: "",
       keywords: "",
       image_alt: "",
-      article: "",
+      description: "",
     },
   });
 
@@ -48,17 +48,17 @@ export default function Publish() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      const response = await storeArticles(
+      const response = await storeTalks(
         data?.title,
         data?.subtitle,
         data?.slug,
-        data?.article,
+        data?.description,
         data?.keywords,
         imageUploadUrl,
         data?.image_alt
       );
       console.log("r", response);
-      toast("Article is published");
+      toast("Talk is published");
       form.reset();
       return response;
     } catch (error) {
@@ -73,7 +73,7 @@ export default function Publish() {
         <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
           Publish
         </h1>
-        <p className="leading-7">Get ready to publish your article</p>
+        <p className="leading-7">Get ready to publish your talk</p>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -88,7 +88,7 @@ export default function Publish() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>This is your article title.</FormDescription>
+                  <FormDescription>This is your talk title.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -102,9 +102,7 @@ export default function Publish() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>
-                    This is your article subtitle.
-                  </FormDescription>
+                  <FormDescription>This is your talk subtitle.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -119,9 +117,7 @@ export default function Publish() {
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
-                    <FormDescription>
-                      This is your article slug.
-                    </FormDescription>
+                    <FormDescription>This is your talk slug.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -144,7 +140,7 @@ export default function Publish() {
               />
             </div>
             <div className="flex flex-col justify-center items-start w-full gap-3">
-              <Label>Upload Article Image</Label>
+              <Label>Upload Talk Image</Label>
               <UploadButton
                 appearance={{
                   button:
@@ -190,19 +186,19 @@ export default function Publish() {
             />
             <FormField
               control={form.control}
-              name="article"
+              name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Article Content</FormLabel>
+                  <FormLabel>Talk Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Write your article content here"
+                      placeholder="Write your talk description here"
                       {...field}
                       rows={10}
                     />
                   </FormControl>
                   <FormDescription>
-                    This is your article content.
+                    This is your talk description.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

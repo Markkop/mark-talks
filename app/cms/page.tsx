@@ -1,20 +1,21 @@
-import { getAllArticles } from "@/utils/actions/articles/get-all-articles";
+import { getAllTalks } from "@/utils/actions/talks/get-all-talks";
+import { Talk } from "@/utils/types";
 import { StopCircle, VerifiedIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function CMS() {
-  const response = await getAllArticles();
+  const response = await getAllTalks();
   return (
     <main className="flex w-full mt-[1rem] flex-col items-start justify-between ">
       <h1 className="scroll-m-20 font-semibold tracking-tight text-4xl">
-        Articles
+        Talks
       </h1>
       <div className="flex flex-wrap justify-start items-center gap-3 mt-[1rem] mb-[5rem] w-full">
         {response?.length > 0 ? (
-          response?.map((info: any) => (
+          response?.map((info: Talk) => (
             <Link href={`/cms/preview/${info?.slug}`} key={info?.id}>
-              <article
+              <talk
                 key={info?.id}
                 className="flex flex-col space-y-2 p-4 rounded-md border max-w-[350px]"
               >
@@ -27,7 +28,7 @@ export default async function CMS() {
                 />
                 <div className="flex lg:flex-row w-full justify-between items-center">
                   <h2 className="text-xl font-bold">{info?.title}</h2>
-                  {/* Remove the Badge component for category */}
+                  {/* Removed Badge component for category */}
                 </div>
                 <p className="text-muted-foreground">{info?.subtitle}</p>
                 <div className="flex justify-between items-center w-full">
@@ -36,7 +37,7 @@ export default async function CMS() {
                   </p>
                   {info?.published ? <VerifiedIcon /> : <StopCircle />}
                 </div>
-              </article>
+              </talk>
             </Link>
           ))
         ) : (
@@ -44,10 +45,10 @@ export default async function CMS() {
             <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
               <div className="flex flex-col items-center text-center">
                 <h3 className="text-2xl font-bold tracking-tight">
-                  You have no articles
+                  You have no talks
                 </h3>
                 <p className="text-sm text-muted-foreground mb-3">
-                  Articles will show here once you&apos;ve published articles
+                  Talks will show here once you&apos;ve published talks
                 </p>
               </div>
             </div>

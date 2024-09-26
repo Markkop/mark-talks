@@ -1,15 +1,9 @@
 "use server";
-import { auth } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const getAllArticles = async () => {
-  const { userId } = auth();
-
-  if (!userId) {
-    return null;
-  }
-
+export const getTalksSlugsApi = async (userId: string) => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -25,12 +19,18 @@ export const getAllArticles = async () => {
   );
 
   try {
-    const { data, error } = await supabase
-      .from("blog")
-      .select("*")
-      .eq("user_id", userId)
+    const result = await clerkClient.users.getUser(userId!);
 
-    if (error?.code) return error;
+    const { data, error } = await supabase
+      .from("talks")
+      .select("slug")
+      .eq("user_id", result?.id)
+      .eq("published", true);
+
+    if (error?.code)
+      return {
+        error,
+      };
 
     return data;
   } catch (error: any) {

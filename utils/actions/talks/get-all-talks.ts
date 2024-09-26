@@ -1,18 +1,10 @@
 "use server";
+import { Talk } from "@/utils/types";
 import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export const storeArticles = async (
-  title: string,
-  subtitle: string,
-  slug: string,
-  blog: string,
-  keywords: string,
-  image: string,
-  image_alt: string
-) => {
+export const getAllTalks = async () => {
   const { userId } = auth();
 
   if (!userId) {
@@ -20,8 +12,6 @@ export const storeArticles = async (
   }
 
   const cookieStore = cookies();
-
-  const keywordArray = keywords?.split(',')
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -37,26 +27,13 @@ export const storeArticles = async (
 
   try {
     const { data, error } = await supabase
-      .from("blog")
-      .insert([
-        {
-          title,
-          subtitle,
-          slug,
-          blog_html: blog,
-          keywords: keywordArray,
-          image,
-          image_alt,
-          user_id: userId
-        },
-      ])
-      .select();
+      .from("talks") // Changed from "blog" to "talks"
+      .select("*")
+      .eq("user_id", userId)
 
     if (error?.code) return error;
 
-    revalidatePath('/cms')
-
-    return data;
+    return data as Talk[]; // Updated return type
   } catch (error: any) {
     return error;
   }

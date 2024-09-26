@@ -4,7 +4,15 @@ import { createServerClient } from "@supabase/ssr";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export const updateArticle = async (slug: string, blog: string) => {
+export const storeTalks = async (
+  title: string,
+  subtitle: string,
+  slug: string,
+  description: string,
+  keywords: string,
+  image: string,
+  image_alt: string
+) => {
   const { userId } = auth();
 
   if (!userId) {
@@ -12,6 +20,8 @@ export const updateArticle = async (slug: string, blog: string) => {
   }
 
   const cookieStore = cookies();
+
+  const keywordArray = keywords?.split(',')
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -27,19 +37,24 @@ export const updateArticle = async (slug: string, blog: string) => {
 
   try {
     const { data, error } = await supabase
-      .from("blog")
-      .update([
+      .from("talks") // Changed from "blog" to "talks"
+      .insert([
         {
-          blog_html: blog,
+          title,
+          subtitle,
+          slug,
+          description, // Updated field
+          keywords: keywordArray,
+          image,
+          image_alt,
+          user_id: userId
         },
       ])
-      .eq("user_id", userId)
-      .eq("slug", slug)
       .select();
 
     if (error?.code) return error;
 
-    revalidatePath("/cms");
+    revalidatePath('/cms')
 
     return data;
   } catch (error: any) {

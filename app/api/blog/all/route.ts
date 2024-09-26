@@ -1,4 +1,4 @@
-import { getAllArticlesApi } from "@/utils/actions/api/get-articles-api";
+import { getAllTalksApi } from "@/utils/actions/api/get-talks-api";
 import { clerkClient } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -8,7 +8,7 @@ export async function GET() {
 
   try {
     const result = await clerkClient.users.getUser(authorization!);
-    const response = await getAllArticlesApi(result?.id!);
+    const response = await getAllTalksApi(result?.id!);
 
     if (response?.error) {
       return NextResponse.json({
