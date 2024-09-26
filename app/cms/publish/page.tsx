@@ -1,213 +1,199 @@
 "use client";
+
+import { TalkCard } from "@/components/TalkCard";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { storeTalks } from "@/utils/actions/talks/store-talks";
 import { UploadButton } from "@/utils/uploadthing";
-import "@blocknote/core/fonts/inter.css";
-import "@blocknote/react/style.css";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
-const FormSchema = z.object({
-  title: z.string(),
-  subtitle: z.string(),
-  slug: z.string(),
-  keywords: z.string(),
-  image_alt: z.string(),
-  description: z.string(),
-});
+interface Talk {
+  title: string;
+  created_at: string;
+  location: string;
+  description: string;
+  presentation_link: string;
+  feedback_link: string;
+  image: string;
+  keywords: string[];
+  talk_html: string;
+}
 
-export default function Publish() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      title: "",
-      subtitle: "",
-      slug: "",
-      keywords: "",
-      image_alt: "",
-      description: "",
-    },
+export default function PublishPage() {
+  const [talk, setTalk] = useState<Talk>({
+    title: "",
+    created_at: new Date().toISOString(),
+    location: "",
+    description: "",
+    presentation_link: "",
+    feedback_link: "",
+    image: "https://via.placeholder.com/400x200?text=Talk+Image",
+    keywords: [],
+    talk_html: "",
   });
 
-  const [imageUploadUrl, setImageUploadUrl] = useState<string>("");
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setTalk((prevTalk) => ({ ...prevTalk, [name]: value }));
+  };
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  const handleKeywordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const keywords = e.target.value.split(",").map((keyword) => keyword.trim());
+    setTalk((prevTalk) => ({ ...prevTalk, keywords }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
       const response = await storeTalks(
-        data?.title,
-        data?.subtitle,
-        data?.slug,
-        data?.description,
-        data?.keywords,
-        imageUploadUrl,
-        data?.image_alt
+        talk.title,
+        "", // subtitle
+        "", // slug
+        talk.description,
+        talk.keywords.join(", "),
+        talk.image,
+        "" // image_alt
       );
       console.log("r", response);
       toast("Talk is published");
-      form.reset();
-      return response;
+      setTalk({
+        title: "",
+        created_at: new Date().toISOString(),
+        location: "",
+        description: "",
+        presentation_link: "",
+        feedback_link: "",
+        image: "https://via.placeholder.com/400x200?text=Talk+Image",
+        keywords: [],
+        talk_html: "",
+      });
     } catch (error) {
       console.log("error", error);
-      return error;
+      toast("Error publishing talk");
     }
-  }
+  };
 
   return (
-    <main className="flex min-w-screen mt-[1rem] flex-col items-center justify-between ">
-      <div className="flex flex-col gap-3 mb-[5rem] w-full px-8">
-        <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
-          Publish
-        </h1>
-        <p className="leading-7">Get ready to publish your talk</p>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-3"
-          >
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Enter title here</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>This is your talk title.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white p-8">
+      <h1 className="mb-8 text-center text-3xl font-bold">
+        Publish a New Talk
+      </h1>
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8">
+          <h2 className="mb-4 text-xl font-semibold">Preview</h2>
+          <div className="w-full max-w-sm mx-auto">
+            <TalkCard
+              talk={{
+                ...talk,
+                title: talk.title || "Your Talk Title",
+                description:
+                  talk.description || "A brief description of your talk...",
+                location: talk.location || "Conference Name, City",
+                keywords:
+                  talk.keywords.length > 0
+                    ? talk.keywords
+                    : ["Keyword1", "Keyword2"],
+              }}
             />
-            <FormField
-              control={form.control}
-              name="subtitle"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Enter subtitle here</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>This is your talk subtitle.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex justify-center items-center w-full gap-3">
-              <FormField
-                control={form.control}
-                name="slug"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Enter slug here</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormDescription>This is your talk slug.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="keywords"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Enter keywords here</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Pizza, Chicken, Food" />
-                    </FormControl>
-                    <FormDescription>
-                      Separate keywords by comma.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
+          </div>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="title">Title</Label>
+              <Input
+                id="title"
+                name="title"
+                value={talk.title}
+                onChange={handleInputChange}
+                placeholder="Enter talk title"
               />
             </div>
-            <div className="flex flex-col justify-center items-start w-full gap-3">
-              <Label>Upload Talk Image</Label>
+            <div>
+              <Label htmlFor="location">Location</Label>
+              <Input
+                id="location"
+                name="location"
+                value={talk.location}
+                onChange={handleInputChange}
+                placeholder="Enter talk location"
+              />
+            </div>
+            <div>
+              <Label htmlFor="keywords">Keywords (comma-separated)</Label>
+              <Input
+                id="keywords"
+                name="keywords"
+                value={talk.keywords.join(", ")}
+                onChange={handleKeywordsChange}
+                placeholder="Enter keywords"
+              />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                name="description"
+                value={talk.description}
+                onChange={handleInputChange}
+                placeholder="Enter talk description"
+                rows={4}
+              />
+            </div>
+            <div>
+              <Label htmlFor="presentation_link">Presentation Link</Label>
+              <Input
+                id="presentation_link"
+                name="presentation_link"
+                value={talk.presentation_link}
+                onChange={handleInputChange}
+                placeholder="Enter presentation link"
+              />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="feedback_link">Feedback Link</Label>
+              <Input
+                id="feedback_link"
+                name="feedback_link"
+                value={talk.feedback_link}
+                onChange={handleInputChange}
+                placeholder="Enter feedback link"
+              />
+            </div>
+            <div>
+              <Label>Talk Image</Label>
               <UploadButton
-                appearance={{
-                  button:
-                    "ut-ready:bg-green-500 ut-uploading:cursor-not-allowed rounded-r-none bg-red-500 bg-none after:bg-orange-400 px-5",
-                  container:
-                    "w-max flex-row rounded-md border-cyan-300 bg-slate-800",
-                  allowedContent:
-                    "flex h-8 flex-col items-center justify-center px-2 text-white",
-                }}
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
-                  // Do something with the response
-                  setImageUploadUrl(res?.[0]?.url);
+                  setTalk((prevTalk) => ({
+                    ...prevTalk,
+                    image: res?.[0]?.url || prevTalk.image,
+                  }));
                   toast(`Image uploaded`);
                 }}
                 onUploadError={(error: Error) => {
-                  // Do something with the error.
                   toast(`ERROR! ${error.message}`);
                 }}
               />
-              {imageUploadUrl !== "" && (
-                <div className="flex flex-col justify-center items-start w-full gap-3 mt-2">
-                  <Label>Image Url</Label>
-                  <Input value={imageUploadUrl} />
-                </div>
-              )}
             </div>
-            <FormField
-              control={form.control}
-              name="image_alt"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Enter Image alt text</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Image alt text" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    This is your image alt text.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Talk Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Write your talk description here"
-                      {...field}
-                      rows={10}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    This is your talk description.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
+            <Button type="submit" className="w-full mt-4">
+              Publish Talk
+            </Button>
+          </div>
+        </form>
       </div>
-    </main>
+    </div>
   );
 }
