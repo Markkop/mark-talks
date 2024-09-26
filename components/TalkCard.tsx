@@ -14,6 +14,7 @@ interface TalkCardProps {
     title: string;
     created_at: string;
     location?: string;
+    description?: string;
     talk_html: string;
     keywords?: string[];
     image?: string;

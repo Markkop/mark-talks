@@ -2,11 +2,19 @@
 
 import { TalkCard } from "@/components/TalkCard";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { storeTalks } from "@/utils/actions/talks/store-talks";
 import { UploadButton } from "@/utils/uploadthing";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -45,6 +53,12 @@ export default function PublishPage() {
   const handleKeywordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const keywords = e.target.value.split(",").map((keyword) => keyword.trim());
     setTalk((prevTalk) => ({ ...prevTalk, keywords }));
+  };
+
+  const handleDateChange = (date: Date | undefined) => {
+    if (date) {
+      setTalk((prevTalk) => ({ ...prevTalk, created_at: date.toISOString() }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -87,19 +101,7 @@ export default function PublishPage() {
         <div className="mb-8">
           <h2 className="mb-4 text-xl font-semibold">Preview</h2>
           <div className="w-full max-w-sm mx-auto">
-            <TalkCard
-              talk={{
-                ...talk,
-                title: talk.title || "Your Talk Title",
-                description:
-                  talk.description || "A brief description of your talk...",
-                location: talk.location || "Conference Name, City",
-                keywords:
-                  talk.keywords.length > 0
-                    ? talk.keywords
-                    : ["Keyword1", "Keyword2"],
-              }}
-            />
+            <TalkCard talk={talk} />
           </div>
         </div>
         <form
@@ -128,14 +130,32 @@ export default function PublishPage() {
               />
             </div>
             <div>
-              <Label htmlFor="keywords">Keywords (comma-separated)</Label>
-              <Input
-                id="keywords"
-                name="keywords"
-                value={talk.keywords.join(", ")}
-                onChange={handleKeywordsChange}
-                placeholder="Enter keywords"
-              />
+              <Label htmlFor="created_at">Date</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className={`w-full justify-start text-left font-normal ${
+                      !talk.created_at && "text-muted-foreground"
+                    }`}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {talk.created_at ? (
+                      format(new Date(talk.created_at), "PPP")
+                    ) : (
+                      <span>Pick a date</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={new Date(talk.created_at)}
+                    onSelect={handleDateChange}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
           <div className="space-y-4">
@@ -151,6 +171,18 @@ export default function PublishPage() {
               />
             </div>
             <div>
+              <Label htmlFor="keywords">Keywords (comma-separated)</Label>
+              <Input
+                id="keywords"
+                name="keywords"
+                value={talk.keywords.join(", ")}
+                onChange={handleKeywordsChange}
+                placeholder="Enter keywords"
+              />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
               <Label htmlFor="presentation_link">Presentation Link</Label>
               <Input
                 id="presentation_link"
@@ -160,8 +192,6 @@ export default function PublishPage() {
                 placeholder="Enter presentation link"
               />
             </div>
-          </div>
-          <div className="space-y-4">
             <div>
               <Label htmlFor="feedback_link">Feedback Link</Label>
               <Input
