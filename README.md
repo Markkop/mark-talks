@@ -75,3 +75,4 @@ yarn dev
 ## Contributing
 
 Contributions to the project are welcome. Feel free to fork the repository, make your changes, and submit a pull request. You can also open issues to suggest improvements or report bugs.
+.
