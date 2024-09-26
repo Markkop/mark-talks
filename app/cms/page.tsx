@@ -28,7 +28,7 @@ export default async function CMS() {
                 <div className="relative h-48 w-full">
                   <Image
                     src={talk.image || "/placeholder.svg"}
-                    alt={talk.image_alt || talk.title}
+                    alt={talk.image_alt || talk.title || ""}
                     layout="fill"
                     objectFit="cover"
                     className="rounded-md"
@@ -46,7 +46,7 @@ export default async function CMS() {
                   {talk.subtitle}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {new Date(talk.created_at).toLocaleDateString()}
+                  {new Date(talk.created_at || "").toLocaleDateString()}
                 </p>
               </div>
             </Link>

@@ -55,9 +55,9 @@ export default function PublishPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const generatedSlug = `${talk.title
+      const generatedSlug = `${talk.title || ""}-${nanoid(6)}`
         .toLowerCase()
-        .replace(/\s+/g, "-")}-${nanoid(6)}`;
+        .replace(/\s+/g, "-");
 
       const response = await storeTalks(
         talk.title || "", // Ensure title is a string
@@ -172,7 +172,7 @@ export default function PublishPage() {
                 <PopoverContent className="w-auto p-0">
                   <Calendar
                     mode="single"
-                    selected={new Date(talk.created_at)}
+                    selected={new Date(talk.created_at || "")}
                     onSelect={handleDateChange}
                     initialFocus
                   />

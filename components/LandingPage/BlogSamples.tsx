@@ -45,7 +45,7 @@ export default async function BlogSample() {
         <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-5">
           {talks?.map((talk) => (
             <Link href={"/"} key={talk?.id}>
-              <talk className="flex flex-col space-y-2 p-4 rounded-md border">
+              <div className="flex flex-col space-y-2 p-4 rounded-md border">
                 <Image
                   src={talk?.image!}
                   alt={""}
@@ -62,7 +62,7 @@ export default async function BlogSample() {
                 <p className="text-sm text-muted-foreground">
                   {new Date(talk?.date!)?.toLocaleDateString()}
                 </p>
-              </talk>
+              </div>
             </Link>
           ))}
         </div>
