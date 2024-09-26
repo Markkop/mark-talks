@@ -1,10 +1,13 @@
 "use server";
-import { Talk } from "@/utils/types";
 import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export const getAllTalks = async () => {
+export const statusTalks = async (
+  slug: string,
+  published: boolean
+) => {
   const { userId } = auth();
 
   if (!userId) {
@@ -27,16 +30,21 @@ export const getAllTalks = async () => {
 
   try {
     const { data, error } = await supabase
-      .from("Talk") // Changed from "blog" to "Talk"
-      .select("*")
+      .from("Talk")
+      .update([
+        {
+          published,
+        },
+      ])
       .eq("user_id", userId)
+      .eq("slug", slug)
+      .select();
 
-    if (error) {
-      console.error("Error fetching talks:", error);
-      return [];
-    }
+    if (error?.code) return error;
 
-    return data as Talk[]; // Updated return type
+    revalidatePath("/cms");
+
+    return data;
   } catch (error: any) {
     return error;
   }

@@ -1,6 +1,7 @@
 "use server";
 import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
+import { nanoid } from 'nanoid';
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -9,7 +10,7 @@ export const storeTalks = async (
   subtitle: string,
   slug: string,
   description: string,
-  keywords: string,
+  keywords: string[],
   image: string,
   image_alt: string
 ) => {
@@ -20,8 +21,6 @@ export const storeTalks = async (
   }
 
   const cookieStore = cookies();
-
-  const keywordArray = keywords?.split(',')
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -36,28 +35,37 @@ export const storeTalks = async (
   );
 
   try {
+    const generatedSlug = `${slug || title.toLowerCase().replace(/\s+/g, '-')}-${nanoid(6)}`;
+
     const { data, error } = await supabase
-      .from("talks") // Changed from "blog" to "talks"
+      .from("Talk")
       .insert([
         {
           title,
           subtitle,
-          slug,
-          description, // Updated field
-          keywords: keywordArray,
+          slug: generatedSlug, // Use the generated slug
+          description,
+          keywords,
           image,
           image_alt,
-          user_id: userId
+          user_id: userId,
+          created_at: new Date().toISOString(), // Add this line
         },
       ])
       .select();
 
-    if (error?.code) return error;
+    if (error) {
+      console.error("Error inserting talk:", error);
+      return { error: error.message };
+    }
+
+    console.log("Inserted talk:", data);
 
     revalidatePath('/cms')
 
-    return data;
+    return { data };
   } catch (error: any) {
-    return error;
+    console.error("Unexpected error:", error);
+    return { error: error.message };
   }
 };

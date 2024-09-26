@@ -12,27 +12,18 @@ import {
 } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { storeTalks } from "@/utils/actions/talks/store-talks";
+import { Talk } from "@/utils/types";
 import { UploadButton } from "@/utils/uploadthing";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
+import { nanoid } from "nanoid";
 import { useState } from "react";
 import { toast } from "sonner";
-
-interface Talk {
-  title: string;
-  created_at: string;
-  location: string;
-  description: string;
-  presentation_link: string;
-  feedback_link: string;
-  image: string;
-  keywords: string[];
-  talk_html: string;
-}
 
 export default function PublishPage() {
   const [talk, setTalk] = useState<Talk>({
     title: "",
+    slug: "",
     created_at: new Date().toISOString(),
     location: "",
     description: "",
@@ -64,31 +55,48 @@ export default function PublishPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const generatedSlug = `${talk.title
+        .toLowerCase()
+        .replace(/\s+/g, "-")}-${nanoid(6)}`;
+
       const response = await storeTalks(
-        talk.title,
+        talk.title || "", // Ensure title is a string
         "", // subtitle
-        "", // slug
-        talk.description,
-        talk.keywords.join(", "), // Join keywords into a single string
-        talk.image,
+        generatedSlug, // Use the generated slug
+        talk.description || "", // Ensure description is a string
+        talk.keywords || [],
+        talk.image || "",
         "" // image_alt
       );
-      console.log("r", response);
-      toast("Talk is published");
-      setTalk({
-        title: "",
-        created_at: new Date().toISOString(),
-        location: "",
-        description: "",
-        presentation_link: "",
-        feedback_link: "",
-        image: "https://via.placeholder.com/400x200?text=Talk+Image",
-        keywords: [],
-        talk_html: "",
-      });
+
+      if (!response) {
+        console.error("Unexpected error publishing talk");
+        toast.error("Unexpected error publishing talk");
+        return;
+      }
+
+      if (response.error) {
+        console.error("Error publishing talk:", response.error);
+        toast.error(`Error publishing talk: ${response.error}`);
+      } else {
+        console.log("Talk published:", response.data);
+        toast.success("Talk is published");
+        setTalk({
+          title: "",
+          slug: "",
+          created_at: new Date().toISOString(),
+          location: "",
+          description: "",
+          presentation_link: "",
+          feedback_link: "",
+          image: "https://via.placeholder.com/400x200?text=Talk+Image",
+          keywords: [],
+          talk_html: "",
+        });
+      }
     } catch (error) {
-      console.log("error", error);
-      toast("Error publishing talk");
+      console.error("Unexpected error:", error);
+      toast.error("Unexpected error publishing talk");
     }
   };
 
@@ -189,7 +197,7 @@ export default function PublishPage() {
               <Input
                 id="keywords"
                 name="keywords"
-                value={talk.keywords.join(", ")}
+                value={talk.keywords}
                 onChange={handleKeywordsChange}
                 placeholder="Enter keywords"
               />

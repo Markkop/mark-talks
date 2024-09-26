@@ -1,3 +1,5 @@
+export const revalidate = 0; // Add this line at the top of the file
+
 import { Button } from "@/components/ui/button";
 import { getAllTalks } from "@/utils/actions/talks/get-all-talks";
 import { Talk } from "@/utils/types";

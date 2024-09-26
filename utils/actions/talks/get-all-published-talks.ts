@@ -1,16 +1,8 @@
 "use server";
-import { Talk } from "@/utils/types";
-import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const getAllTalks = async () => {
-  const { userId } = auth();
-
-  if (!userId) {
-    return null;
-  }
-
+export const getAllPublishedTalks = async () => {
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -27,17 +19,15 @@ export const getAllTalks = async () => {
 
   try {
     const { data, error } = await supabase
-      .from("Talk") // Changed from "blog" to "Talk"
+      .from("Talk")
       .select("*")
-      .eq("user_id", userId)
+      // .eq("published", true)
+      .order("created_at", { ascending: false });
+    if (error?.code) return [];
 
-    if (error) {
-      console.error("Error fetching talks:", error);
-      return [];
-    }
-
-    return data as Talk[]; // Updated return type
+    return data || [];
   } catch (error: any) {
-    return error;
+    console.error("Error fetching published talks:", error);
+    return [];
   }
 };

@@ -33,22 +33,22 @@ model blog {
 }
 
 model Talk {
-  id                String   @id @default(cuid())
-  created_at        DateTime @default(now())
-  title             String
+  id                String    @id @default(cuid())
+  created_at        DateTime? @default(now())
+  title             String?
   subtitle          String?
-  slug              String   @unique
+  slug              String?   @unique
   description       String?
-  keywords          String   // Changed from String[] to String
-  shareable         Boolean  @default(false)
-  published         Boolean  @default(false)
+  keywords          String[]
+  shareable         Boolean?  @default(false)
+  published         Boolean?  @default(false)
   image             String?
   image_alt         String?
   talk_html         String?
   presentation_link String?
   feedback_link     String?
   location          String?
-  user_id           String
+  user_id           String?
 
   @@index([user_id])
 }

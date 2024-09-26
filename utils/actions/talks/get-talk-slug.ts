@@ -24,7 +24,7 @@ export const getTalkBySlug = async (slug: string) => {
   );
   try {
     const { data, error } = await supabase
-      .from("talks")
+      .from("Talk")
       .select(`*`)
       .eq("slug", slug)
       .eq("user_id", userId);

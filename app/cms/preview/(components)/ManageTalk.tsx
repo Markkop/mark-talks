@@ -157,7 +157,7 @@ export default function ManageTalk({ params, response }: Props) {
             <DialogHeader>
               <DialogTitle>Unpublish Talk</DialogTitle>
               <DialogDescription>
-                Are you sure you want to unpublish this talk?.
+                Are you sure you want to unpublish this talk?
               </DialogDescription>
             </DialogHeader>
             <Button
@@ -180,7 +180,7 @@ export default function ManageTalk({ params, response }: Props) {
             <DialogHeader>
               <DialogTitle>Publish Talk</DialogTitle>
               <DialogDescription>
-                Are you sure you want to publish this talk?.
+                Are you sure you want to publish this talk?
               </DialogDescription>
             </DialogHeader>
             <Button
