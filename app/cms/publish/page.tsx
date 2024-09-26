@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -7,14 +7,18 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { storeArticles } from "@/utils/actions/articles/store-articles";
-import { useGetAllAuthors } from "@/utils/hooks/useGetAllAuthors";
-import { useGetAllCategories } from "@/utils/hooks/useGetAllCategories";
 import { useGetAllDocuments } from "@/utils/hooks/useGetAllDocuments";
 import { UploadButton } from "@/utils/uploadthing";
 import "@blocknote/core/fonts/inter.css";
@@ -31,13 +35,10 @@ const FormSchema = z.object({
   slug: z.string(),
   keywords: z.string(),
   image_alt: z.string(),
-  author: z.string(),
-  category: z.string(),
-  article: z.string()
-})
+  article: z.string(),
+});
 
 export default function Publish() {
-
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,32 +47,37 @@ export default function Publish() {
       slug: "",
       keywords: "",
       image_alt: "",
-      author: "",
-      category: "",
-      article: ""
-    }
-  })
+      article: "",
+    },
+  });
 
-  const [imageUploadUrl, setImageUploadUrl] = useState<string>("")
+  const [imageUploadUrl, setImageUploadUrl] = useState<string>("");
 
-
-  const { data: documentData } = useGetAllDocuments()
-  const { data: authorsData } = useGetAllAuthors()
-  const { data: categoryData } = useGetAllCategories()
+  const { data: documentData } = useGetAllDocuments();
+  if (documentData?.code) {
+    console.error(documentData);
+  }
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      const response = await storeArticles(data?.title, data?.subtitle, data?.slug, data?.article, data?.author, data?.category, data?.keywords, imageUploadUrl, data?.image_alt)
-      console.log('r', response)
-      toast("Article is published")
-      form.reset()
-      return response
+      const response = await storeArticles(
+        data?.title,
+        data?.subtitle,
+        data?.slug,
+        data?.article,
+        data?.keywords,
+        imageUploadUrl,
+        data?.image_alt
+      );
+      console.log("r", response);
+      toast("Article is published");
+      form.reset();
+      return response;
     } catch (error) {
-      console.log('error', error)
-      return error
+      console.log("error", error);
+      return error;
     }
   }
-
 
   return (
     <main className="flex min-w-screen mt-[1rem] flex-col items-center justify-between ">
@@ -83,7 +89,10 @@ export default function Publish() {
           Get ready to publish articles that have been written and saved
         </p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-3">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-3"
+          >
             <FormField
               control={form.control}
               name="title"
@@ -91,7 +100,7 @@ export default function Publish() {
                 <FormItem>
                   <FormLabel>Enter title here</FormLabel>
                   <FormControl>
-                    <Input  {...field} />
+                    <Input {...field} />
                   </FormControl>
                   <FormDescription>This is your article title.</FormDescription>
                   <FormMessage />
@@ -107,7 +116,9 @@ export default function Publish() {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>This is your article subtitle.</FormDescription>
+                  <FormDescription>
+                    This is your article subtitle.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -120,9 +131,11 @@ export default function Publish() {
                   <FormItem className="w-full">
                     <FormLabel>Enter slug here</FormLabel>
                     <FormControl>
-                      <Input  {...field} />
+                      <Input {...field} />
                     </FormControl>
-                    <FormDescription>This is your article slug.</FormDescription>
+                    <FormDescription>
+                      This is your article slug.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -134,9 +147,11 @@ export default function Publish() {
                   <FormItem className="w-full">
                     <FormLabel>Enter keywords here</FormLabel>
                     <FormControl>
-                      <Input  {...field} placeholder="Pizza, Chicken, Food" />
+                      <Input {...field} placeholder="Pizza, Chicken, Food" />
                     </FormControl>
-                    <FormDescription>Separate keywords by comma.</FormDescription>
+                    <FormDescription>
+                      Separate keywords by comma.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -148,25 +163,28 @@ export default function Publish() {
                 appearance={{
                   button:
                     "ut-ready:bg-green-500 ut-uploading:cursor-not-allowed rounded-r-none bg-red-500 bg-none after:bg-orange-400 px-5",
-                  container: "w-max flex-row rounded-md border-cyan-300 bg-slate-800",
+                  container:
+                    "w-max flex-row rounded-md border-cyan-300 bg-slate-800",
                   allowedContent:
                     "flex h-8 flex-col items-center justify-center px-2 text-white",
                 }}
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                   // Do something with the response
-                  setImageUploadUrl(res?.[0]?.url)
-                  toast(`Image uploaded`)
+                  setImageUploadUrl(res?.[0]?.url);
+                  toast(`Image uploaded`);
                 }}
                 onUploadError={(error: Error) => {
                   // Do something with the error.
                   toast(`ERROR! ${error.message}`);
                 }}
               />
-             {imageUploadUrl !== "" && <div className="flex flex-col justify-center items-start w-full gap-3 mt-2">
-                <Label>Image Url</Label>
-                <Input value={imageUploadUrl} />
-              </div>}
+              {imageUploadUrl !== "" && (
+                <div className="flex flex-col justify-center items-start w-full gap-3 mt-2">
+                  <Label>Image Url</Label>
+                  <Input value={imageUploadUrl} />
+                </div>
+              )}
             </div>
             <FormField
               control={form.control}
@@ -177,7 +195,9 @@ export default function Publish() {
                   <FormControl>
                     <Input placeholder="Image alt text" {...field} />
                   </FormControl>
-                  <FormDescription>This is your image alt text.</FormDescription>
+                  <FormDescription>
+                    This is your image alt text.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -185,46 +205,28 @@ export default function Publish() {
             <div className="flex justify-center items-center w-full gap-3">
               <FormField
                 control={form.control}
-                name="author"
+                name="article"
                 render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Author</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormItem>
+                    <FormLabel>Document</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select an author" />
+                          <SelectValue placeholder="Select a document" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {authorsData?.map((info: any) => (
-                          <div key={info?.id}>
-                            <SelectItem value={info?.author_id}>{info?.author_name}</SelectItem>
-                          </div>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="category"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Category</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select category" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {categoryData?.map((info: any) => (
-                          <div key={info?.id}>
-                            <SelectItem value={String(info?.id)}>{info?.category}</SelectItem>
-                          </div>
-                        ))}
+                        {Array.isArray(documentData) &&
+                          documentData.map((info: any) => (
+                            <div key={info?.id}>
+                              <SelectItem value={info?.document}>
+                                {info?.title}
+                              </SelectItem>
+                            </div>
+                          ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -232,35 +234,10 @@ export default function Publish() {
                 )}
               />
             </div>
-            <FormField
-              control={form.control}
-              name="article"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Document</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a document" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {documentData?.map((info: any) => (
-                        <div key={info?.id}>
-                          <SelectItem value={info?.document}>{info?.title}</SelectItem>
-                        </div>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button type="submit">Submit</Button>
           </form>
         </Form>
-
       </div>
     </main>
-  )
+  );
 }

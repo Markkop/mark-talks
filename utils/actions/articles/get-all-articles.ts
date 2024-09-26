@@ -27,7 +27,7 @@ export const getAllArticles = async () => {
   try {
     const { data, error } = await supabase
       .from("blog")
-      .select("*, category(*), author(*)")
+      .select("*")
       .eq("user_id", userId)
 
     if (error?.code) return error;

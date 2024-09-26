@@ -1,5 +1,4 @@
 "use server";
-import { auth } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
@@ -20,12 +19,7 @@ export const readPublicArticle = async (id: string) => {
   try {
     const { data, error } = await supabase
       .from("blog")
-      .select(
-        `*,
-      author (*),
-      category (*)
-      `
-      )
+      .select(`*`)
       .eq("id", id)
       .eq("shareable", true);
 

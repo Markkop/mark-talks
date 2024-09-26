@@ -9,8 +9,6 @@ export const storeArticles = async (
   subtitle: string,
   slug: string,
   blog: string,
-  author_id: string,
-  category_id: string,
   keywords: string,
   image: string,
   image_alt: string
@@ -46,8 +44,6 @@ export const storeArticles = async (
           subtitle,
           slug,
           blog_html: blog,
-          category_id,
-          author_id,
           keywords: keywordArray,
           image,
           image_alt,

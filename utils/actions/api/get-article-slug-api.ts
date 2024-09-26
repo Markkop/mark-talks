@@ -1,5 +1,5 @@
 "use server";
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
@@ -22,14 +22,8 @@ export const getArticleBySlugApi = async (slug: string, userId: string) => {
 
     const { data, error } = await supabase
       .from("blog")
-      .select(
-        `*,
-      author (*),
-      category (*)
-      `
-      )
+      .select(`*`)
       .eq("slug", slug)
-      .eq("published", true)
       .eq("user_id", result?.id);
 
     if (error?.code) return error;

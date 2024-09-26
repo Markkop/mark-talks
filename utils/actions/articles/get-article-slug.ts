@@ -25,12 +25,7 @@ export const getAllArticleBySlug = async (slug: string) => {
   try {
     const { data, error } = await supabase
       .from("blog")
-      .select(
-        `*,
-      author (*),
-      category (*)
-      `
-      )
+      .select(`*`)
       .eq("slug", slug)
       .eq("user_id", userId);
 

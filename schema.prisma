@@ -1,0 +1,10 @@
+model Blog {
+  id       String   @id @default(cuid())
+  title    String
+  content  String
+  // Remove the category_id field
+  // category_id String
+}
+
+// Remove the entire category model
+// Remove the category_id field from any other models that reference it

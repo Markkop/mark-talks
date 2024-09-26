@@ -33,16 +33,6 @@ model category {
   category String
 }
 
-model author {
-  id                 Int    @id @default(autoincrement())
-  user_id            String
-  author_id          String @unique @default(uuid())
-  author_name        String
-  author_profile_img String
-  author_instagram   String
-  author_twitter     String
-}
-
 model blog {
   id          Int      @id @default(autoincrement())
   created_at  DateTime @default(now())
@@ -51,7 +41,6 @@ model blog {
   image       String
   image_alt   String
   category_id String
-  author_id   String
   title       String
   subtitle    String
   slug        String

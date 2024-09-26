@@ -26,43 +26,51 @@ SupaNext CMS is a blog CMS built using Nextjs, Supabase, Tiptap, and Uploadthing
 ### Installation
 
 1. Clone the repository:
-    ```
-    git clone https://github.com/drylikov/CMS.git
-    ```
+   ```
+   git clone https://github.com/drylikov/CMS.git
+   ```
 2. Install the required dependencies:
-    ```
-    npm install
-    ```
-    or
-    ```
-    bun install
-    ```
+   ```
+   npm install
+   ```
+   or
+   ```
+   bun install
+   ```
 3. Create a `.env` file in the root of your project and add your API keys:
-    ```
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-    CLERK_SECRET_KEY=
-    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
-    WEBHOOK_SECRET=
-    NEXT_PUBLIC_SUPABASE_URL=
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=
-    DATABASE_URL=
-    DIRECT_URL=    
-    ```
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   CLERK_SECRET_KEY=
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+   WEBHOOK_SECRET=
+   NEXT_PUBLIC_SUPABASE_URL=
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=
+   DATABASE_URL=
+   DIRECT_URL=
+   ```
+
+Run
+
+```
+npx prisma migrate dev --name init
+```
 
 ### Running the Server
 
 To start the server, execute:
+
 ```
 npm run dev
 ```
+
 or
+
 ```
 yarn dev
 ```
-
 
 ## Contributing
 
