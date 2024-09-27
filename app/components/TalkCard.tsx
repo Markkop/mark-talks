@@ -46,14 +46,15 @@ export function TalkCard({ talk }: { talk: Talk }) {
       <CardHeader className="pb-2">
         <CardTitle>{talk.title}</CardTitle>
         <CardDescription className="flex flex-col space-y-1">
-          <span className="flex items-center">
-            <CalendarIcon className="mr-1 h-4 w-4" />
-            {talk.date}
-          </span>
-          <span className="flex items-center">
-            <MapPinIcon className="mr-1 h-4 w-4" />
-            {talk.location}
-          </span>
+          {[
+            { icon: CalendarIcon, text: talk.date },
+            { icon: MapPinIcon, text: talk.location },
+          ].map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-center">
+              <Icon className="mr-2 h-4 w-4" />
+              <span>{text}</span>
+            </div>
+          ))}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -67,22 +68,42 @@ export function TalkCard({ talk }: { talk: Talk }) {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between bg-gray-50 p-4">
-        <Button variant="outline" className="flex items-center" asChild>
-          <a
-            href={talk.presentationLink}
-            target="_blank"
-            rel="noopener noreferrer"
+        {[
+          {
+            icon: PresentationIcon,
+            text: "View Presentation",
+            link: talk.presentationLink,
+          },
+          {
+            icon: MessageSquareIcon,
+            text: "Provide Feedback",
+            link: talk.feedbackLink,
+          },
+        ].map(({ icon: Icon, text, link }) => (
+          <Button
+            variant="outline"
+            className={cn(
+              "flex items-center",
+              !link && "cursor-not-allowed opacity-50"
+            )}
+            asChild={!!link}
+            disabled={!link}
+            title={link ? undefined : "Not yet available"}
+            key={text}
           >
-            <PresentationIcon className="mr-2 h-4 w-4" />
-            View Presentation
-          </a>
-        </Button>
-        <Button variant="outline" className="flex items-center" asChild>
-          <a href={talk.feedbackLink} target="_blank" rel="noopener noreferrer">
-            <MessageSquareIcon className="mr-2 h-4 w-4" />
-            Give Feedback
-          </a>
-        </Button>
+            {link ? (
+              <a href={link} target="_blank" rel="noopener noreferrer">
+                <Icon className="mr-2 h-4 w-4" />
+                {text}
+              </a>
+            ) : (
+              <>
+                <Icon className="mr-2 h-4 w-4" />
+                {text}
+              </>
+            )}
+          </Button>
+        ))}
       </CardFooter>
     </Card>
   );
