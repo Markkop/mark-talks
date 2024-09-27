@@ -13,7 +13,7 @@ export default function DashboardNav() {
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex items-center border-b h-[60px] px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <span className="text-lg">SupaNext CMS</span>
+            <span className="text-lg">Mark Talks CMS</span>
           </Link>
         </div>
         <div className="flex-1">

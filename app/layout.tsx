@@ -10,7 +10,7 @@ import Provider from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SupaNext CMS",
+  title: "Mark Talks CMS",
   description: "An opensource blog CMS built using Nextjs, Supabase & TipTap",
 };
 

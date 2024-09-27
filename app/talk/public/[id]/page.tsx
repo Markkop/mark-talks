@@ -107,7 +107,7 @@ export default async function TalkPage({ params }: { params: { id: string } }) {
         <Link href="https://cms.rasmic.xyz" target="_blank">
           <div className="w-[225px] fixed bg-white bottom-5 right-5 text-sm p-3 rounded border">
             <p className="text-center">
-              Written on <span className="font-semibold">SupaNext CMS</span>
+              Written on <span className="font-semibold">Mark Talks CMS</span>
             </p>
           </div>
         </Link>

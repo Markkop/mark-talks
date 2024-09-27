@@ -33,7 +33,7 @@ export function NavBar() {
         </SheetTrigger>
         <SheetContent side="left">
           <SheetHeader>
-            <SheetTitle>SupaNext CMS</SheetTitle>
+            <SheetTitle>Mark Talks CMS</SheetTitle>
             <SheetDescription>
               An opensource blog CMS built using Nextjs, Supabase & TipTap
             </SheetDescription>

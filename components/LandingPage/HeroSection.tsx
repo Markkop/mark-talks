@@ -13,7 +13,7 @@ export default function HeroSection() {
         <AnimatedGradientTextComponent />
       </div>
       <h1 className="scroll-m-20 text-4xl sm:text-4xl md:text-6xl font-semibold tracking-tight lg:text-6xl text-center max-w-[1000px] text-primary">
-        SupaNext CMS
+        Mark Talks CMS
       </h1>
       <p className="mx-auto max-w-[700px] text-muted-foreground md:text-lg text-center mt-2">
         An opensource blog CMS built using Nextjs, Supabase & TipTap
