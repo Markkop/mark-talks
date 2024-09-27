@@ -1,3 +1,4 @@
+import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -5,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import { TooltipProvider } from "~/components/ui/tooltip";
 
 import "./tailwind.css";
 
@@ -41,5 +42,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <html lang="en">
+      <body>
+        <TooltipProvider>
+          <Outlet />
+        </TooltipProvider>
+      </body>
+    </html>
+  );
 }

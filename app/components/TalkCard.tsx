@@ -14,6 +14,11 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui/tooltip";
 import { cn } from "~/lib/utils";
 
 export interface Talk {
@@ -102,29 +107,30 @@ export function TalkCard({ talk }: { talk: Talk }) {
             link: talk.feedbackLink,
           },
         ].map(({ icon: Icon, text, link }) => (
-          <Button
-            variant="outline"
-            className={cn(
-              "flex items-center",
-              !link && "cursor-not-allowed opacity-50"
+          <Tooltip key={text}>
+            <TooltipTrigger asChild>
+              <div className="inline-block">
+                {" "}
+                {/* Wrapper div */}
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "flex items-center",
+                    !link && "cursor-not-allowed opacity-50"
+                  )}
+                  disabled={!link}
+                >
+                  <Icon className="mr-2 h-4 w-4" />
+                  {text}
+                </Button>
+              </div>
+            </TooltipTrigger>
+            {!link && (
+              <TooltipContent>
+                <p>Not available yet</p>
+              </TooltipContent>
             )}
-            asChild={!!link}
-            disabled={!link}
-            title={link ? undefined : "Not yet available"}
-            key={text}
-          >
-            {link ? (
-              <a href={link} target="_blank" rel="noopener noreferrer">
-                <Icon className="mr-2 h-4 w-4" />
-                {text}
-              </a>
-            ) : (
-              <>
-                <Icon className="mr-2 h-4 w-4" />
-                {text}
-              </>
-            )}
-          </Button>
+          </Tooltip>
         ))}
       </CardFooter>
     </Card>
