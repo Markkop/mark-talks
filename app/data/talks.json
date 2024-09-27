@@ -8,7 +8,8 @@
     "presentationLink": "",
     "feedbackLink": "",
     "coverImage": "https://i.imgur.com/CNFhtZE.png",
-    "tags": ["IA", "Cursor", "v0"]
+    "tags": ["IA", "Cursor", "v0"],
+    "topCover": false
   },
   {
     "title": "Habitica Talk",
@@ -19,7 +20,8 @@
     "presentationLink": "https://docs.google.com/presentation/d/1BCFNadvJbrBUpa4wOWb_reQrAX0QjnWZs05xkAGAA8Y/edit?usp=sharing",
     "feedbackLink": "",
     "coverImage": "https://i.imgur.com/FbKUQJX.png",
-    "tags": ["Habitica", "Gamification", "Productivity"]
+    "tags": ["Habitica", "Gamification", "Productivity"],
+    "topCover": false
   },
   {
     "title": "Rails in 2019",
@@ -30,6 +32,7 @@
     "presentationLink": "https://docs.google.com/presentation/d/1d8SST0bhF-O0OEsclPWFsDKQsdAGjpTlEm-l_XSHvzI/edit?usp=sharing",
     "feedbackLink": "",
     "coverImage": "https://i.imgur.com/kpyVVsu.png",
-    "tags": ["Ruby", "Rails"]
+    "tags": ["Ruby", "Rails"],
+    "topCover": true
   }
 ]

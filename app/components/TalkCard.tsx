@@ -31,6 +31,7 @@ export interface Talk {
   feedbackLink: string;
   coverImage: string;
   tags: string[];
+  topCover?: boolean;
 }
 
 const formatDate = (dateString: string) => {
@@ -49,14 +50,19 @@ export function TalkCard({ talk }: { talk: Talk }) {
   return (
     <Card
       className={cn(
-        "overflow-hidden transition-all hover:shadow-lg bg-background flex flex-col"
+        "overflow-hidden transition-all hover:shadow-lg bg-background flex flex-col border border-border"
       )}
     >
       <div className="relative h-48 w-full overflow-hidden">
         <img
           src={talk.coverImage}
           alt={`Cover for ${talk.title}`}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+          className={cn(
+            "absolute inset-0 h-full w-full transition-transform duration-300 hover:scale-105",
+            talk.topCover
+              ? "object-cover object-top"
+              : "object-cover object-center"
+          )}
         />
       </div>
       <CardHeader className="pb-2 flex-shrink-0">
