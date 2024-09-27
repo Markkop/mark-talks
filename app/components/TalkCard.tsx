@@ -50,7 +50,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
     <Card
       className={cn(
         "overflow-hidden transition-all hover:shadow-lg",
-        isPast ? "bg-gray-50" : "bg-white"
+        isPast ? "bg-gray-800" : "bg-gray-900"
       )}
     >
       <div className="relative h-48 w-full overflow-hidden">
@@ -62,7 +62,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
       </div>
       <CardHeader className="pb-2">
         <CardTitle>{talk.title}</CardTitle>
-        <CardDescription className="flex flex-col space-y-1">
+        <CardDescription className="flex flex-col space-y-1 text-gray-300">
           <div className="flex items-center">
             <CalendarIcon className="mr-2 h-4 w-4" />
             <span>{formatDate(talk.date)}</span>
@@ -74,7 +74,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
                 href={talk.locationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                className="text-blue-400 hover:underline"
               >
                 {talk.location}
               </a>
@@ -85,16 +85,20 @@ export function TalkCard({ talk }: { talk: Talk }) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="mb-4 text-sm text-gray-600">{talk.description}</p>
+        <p className="mb-4 text-sm text-gray-300">{talk.description}</p>
         <div className="flex flex-wrap gap-2">
           {talk.tags.map((tag, index) => (
-            <Badge key={index} variant="secondary">
+            <Badge
+              key={index}
+              variant="secondary"
+              className="bg-gray-700 text-gray-200"
+            >
               {tag}
             </Badge>
           ))}
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between bg-gray-50 p-4">
+      <CardFooter className="flex justify-between bg-gray-800 p-4">
         {[
           {
             icon: PresentationIcon,
