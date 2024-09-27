@@ -21,8 +21,8 @@ export const getAllPublishedTalks = async () => {
     const { data, error } = await supabase
       .from("Talk")
       .select("*")
-      // .eq("published", true)
-      .order("created_at", { ascending: false });
+      .eq("published", true)
+      .order("date", { ascending: true });
     if (error?.code) return [];
 
     return data || [];

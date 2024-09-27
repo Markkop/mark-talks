@@ -12,7 +12,9 @@ export const storeTalks = async (
   description: string,
   keywords: string[],
   image: string,
-  image_alt: string
+  image_alt: string,
+  date: string,
+  location: string
 ) => {
   const { userId } = auth();
 
@@ -43,13 +45,15 @@ export const storeTalks = async (
         {
           title,
           subtitle,
-          slug: generatedSlug, // Use the generated slug
+          slug: generatedSlug,
           description,
           keywords,
           image,
           image_alt,
           user_id: userId,
-          created_at: new Date().toISOString(), // Add this line
+          created_at: new Date().toISOString(),
+          date: new Date(date).toISOString(), // Add this line
+          location, // Add this line
         },
       ])
       .select();

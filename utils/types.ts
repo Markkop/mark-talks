@@ -15,4 +15,5 @@ export interface Talk {
   feedback_link?: string;
   talk_html?: string;
   user_id?: string;
+  date?: string;
 }

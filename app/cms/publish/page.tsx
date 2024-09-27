@@ -32,6 +32,7 @@ export default function PublishPage() {
     image: "https://via.placeholder.com/400x200?text=Talk+Image",
     keywords: [],
     talk_html: "",
+    date: new Date().toISOString(),
   });
 
   const handleInputChange = (
@@ -48,7 +49,7 @@ export default function PublishPage() {
 
   const handleDateChange = (date: Date | undefined) => {
     if (date) {
-      setTalk((prevTalk) => ({ ...prevTalk, created_at: date.toISOString() }));
+      setTalk((prevTalk) => ({ ...prevTalk, date: date.toISOString() }));
     }
   };
 
@@ -60,13 +61,15 @@ export default function PublishPage() {
         .replace(/\s+/g, "-");
 
       const response = await storeTalks(
-        talk.title || "", // Ensure title is a string
-        "", // subtitle
-        generatedSlug, // Use the generated slug
-        talk.description || "", // Ensure description is a string
+        talk.title || "",
+        talk.subtitle || "",
+        generatedSlug,
+        talk.description || "",
         talk.keywords || [],
         talk.image || "",
-        "" // image_alt
+        talk.image_alt || "",
+        talk.date || new Date().toISOString(),
+        talk.location || ""
       );
 
       if (!response) {
@@ -92,6 +95,7 @@ export default function PublishPage() {
           image: "https://via.placeholder.com/400x200?text=Talk+Image",
           keywords: [],
           talk_html: "",
+          date: new Date().toISOString(),
         });
       }
     } catch (error) {

@@ -6,22 +6,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Talk } from "@/utils/types";
 import { CalendarIcon, MapPinIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface TalkCardProps {
-  talk?: {
-    id?: string;
-    title?: string;
-    created_at?: string;
-    location?: string;
-    description?: string;
-    talk_html?: string;
-    keywords?: string[];
-    image?: string;
-    slug?: string;
-  };
+  talk?: Talk;
 }
 
 export function TalkCard({ talk }: TalkCardProps) {
@@ -50,8 +41,8 @@ export function TalkCard({ talk }: TalkCardProps) {
           <CardDescription className="flex flex-col space-y-1">
             <span className="flex items-center">
               <CalendarIcon className="mr-1 h-4 w-4" />
-              {talk?.created_at
-                ? new Date(talk.created_at).toLocaleDateString()
+              {talk?.date
+                ? new Date(talk.date).toLocaleDateString()
                 : placeholderDate}
             </span>
             <span className="flex items-center">
