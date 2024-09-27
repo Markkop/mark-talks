@@ -3,11 +3,12 @@
     "title": "10x Dev AI",
     "date": "2024-10-01",
     "location": "Meetup Codecon FLN",
+    "locationLink": "https://eventos.codecon.dev/meetup-codecon-fln-07/",
     "description": "Discover which AI tools you need to know to stay ahead and boost your productivity",
     "presentationLink": "",
     "feedbackLink": "",
     "isPast": true,
-    "coverImage": "https://i.imgur.com/sMCY6or.png",
+    "coverImage": "https://i.imgur.com/CNFhtZE.png",
     "tags": ["IA", "Cursor", "v0"]
   }
 ]

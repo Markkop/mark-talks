@@ -20,20 +20,32 @@ export interface Talk {
   title: string;
   date: string;
   location: string;
+  locationLink?: string; // New optional property
   description: string;
   presentationLink: string;
   feedbackLink: string;
-  isPast: boolean;
   coverImage: string;
   tags: string[];
 }
 
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  return new Date(dateString).toLocaleString("en-US", options);
+};
+
 export function TalkCard({ talk }: { talk: Talk }) {
+  const isPast = new Date(talk.date) < new Date();
+
   return (
     <Card
       className={cn(
         "overflow-hidden transition-all hover:shadow-lg",
-        talk.isPast ? "bg-gray-50" : "bg-white"
+        isPast ? "bg-gray-50" : "bg-white"
       )}
     >
       <div className="relative h-48 w-full overflow-hidden">
@@ -46,15 +58,25 @@ export function TalkCard({ talk }: { talk: Talk }) {
       <CardHeader className="pb-2">
         <CardTitle>{talk.title}</CardTitle>
         <CardDescription className="flex flex-col space-y-1">
-          {[
-            { icon: CalendarIcon, text: talk.date },
-            { icon: MapPinIcon, text: talk.location },
-          ].map(({ icon: Icon, text }) => (
-            <div key={text} className="flex items-center">
-              <Icon className="mr-2 h-4 w-4" />
-              <span>{text}</span>
-            </div>
-          ))}
+          <div className="flex items-center">
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            <span>{formatDate(talk.date)}</span>
+          </div>
+          <div className="flex items-center">
+            <MapPinIcon className="mr-2 h-4 w-4" />
+            {talk.locationLink ? (
+              <a
+                href={talk.locationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                {talk.location}
+              </a>
+            ) : (
+              <span>{talk.location}</span>
+            )}
+          </div>
         </CardDescription>
       </CardHeader>
       <CardContent>
