@@ -20,8 +20,8 @@
     "clsx": "^2.1.1",
     "isbot": "^4.1.0",
     "lucide-react": "^0.446.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.3.0-canary-08cd087ca-20240110",
+    "react-dom": "18.3.0-canary-08cd087ca-20240110",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },
