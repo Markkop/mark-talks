@@ -1,0 +1,24 @@
+[
+  {
+    "title": "The Future of Web Development",
+    "date": "2023-05-15",
+    "location": "TechConf, San Francisco",
+    "description": "Exploring upcoming trends and technologies in web development.",
+    "presentationLink": "https://example.com/future-web-dev",
+    "feedbackLink": "https://example.com/feedback-future-web-dev",
+    "isPast": true,
+    "coverImage": "/placeholder.svg?height=200&width=400",
+    "tags": ["Web Dev", "Future Trends", "JavaScript"]
+  },
+  {
+    "title": "Mastering React Hooks",
+    "date": "2023-09-20",
+    "location": "ReactCon, New York",
+    "description": "Deep dive into advanced React Hooks and custom hook creation.",
+    "presentationLink": "https://example.com/react-hooks",
+    "feedbackLink": "https://example.com/feedback-react-hooks",
+    "isPast": false,
+    "coverImage": "/placeholder.svg?height=200&width=400",
+    "tags": ["React", "Hooks", "Frontend"]
+  }
+]
