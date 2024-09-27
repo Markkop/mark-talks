@@ -26,7 +26,7 @@ export function NavBar() {
   const { userId } = useAuth();
 
   return (
-    <div className="flex min-w-full justify-between p-2 border-b z-10">
+    <div className="flex min-w-full justify-between items-center p-2 border-b z-10">
       <Dialog>
         <SheetTrigger className="min-[825px]:hidden p-2 transition hover:bg-secondary">
           <GiHamburgerMenu />
@@ -64,13 +64,24 @@ export function NavBar() {
       </Dialog>
 
       <NavigationMenu>
-        <NavigationMenuList className="max-[825px]:hidden ">
+        <NavigationMenuList className="max-[825px]:hidden">
           <Link href="/" className="pl-2">
             <BookOpen />
           </Link>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex items-center gap-3">{userId && <Profile />}</div>
+      <div className="flex items-center gap-3">
+        {userId && (
+          <>
+            <Link href="/cms">
+              <Button variant="outline" size="sm">
+                Admin
+              </Button>
+            </Link>
+            <Profile />
+          </>
+        )}
+      </div>
     </div>
   );
 }
