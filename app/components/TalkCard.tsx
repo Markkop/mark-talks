@@ -45,6 +45,7 @@ const formatDate = (dateString: string) => {
 
 export function TalkCard({ talk }: { talk: Talk }) {
   const isPast = new Date(talk.date) < new Date();
+  const isAfter2023 = new Date(talk.date).getFullYear() >= 2024;
 
   return (
     <Card
@@ -105,17 +106,19 @@ export function TalkCard({ talk }: { talk: Talk }) {
             text: "View Presentation",
             link: talk.presentationLink,
           },
-          {
-            icon: MessageSquareIcon,
-            text: "Provide Feedback",
-            link: talk.feedbackLink,
-          },
+          ...(isAfter2023
+            ? [
+                {
+                  icon: MessageSquareIcon,
+                  text: "Provide Feedback",
+                  link: talk.feedbackLink,
+                },
+              ]
+            : []),
         ].map(({ icon: Icon, text, link }) => (
           <Tooltip key={text}>
             <TooltipTrigger asChild>
               <div className="inline-block">
-                {" "}
-                {/* Wrapper div */}
                 <Button
                   variant="outline"
                   className={cn(
