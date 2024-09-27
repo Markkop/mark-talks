@@ -1,0 +1,4 @@
+- When merging tailwind classes conditionally, use cn utility function.
+- Always try to use object mapping and return early patterns when possible.
+- Always try to use default values for function parameters.
+- Always try to use named exports for functions and components.

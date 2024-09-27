@@ -6,7 +6,7 @@
 
 import { PassThrough } from "node:stream";
 
-import type { AppLoadContext, EntryContext } from "@remix-run/node";
+import type { EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
@@ -18,11 +18,7 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
-  // This is ignored so we can keep it in the template for visibility.  Feel
-  // free to delete this parameter in your app if you're not using it!
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  loadContext: AppLoadContext
+  remixContext: EntryContext
 ) {
   return isbot(request.headers.get("user-agent") || "")
     ? handleBotRequest(
@@ -75,9 +71,6 @@ function handleBotRequest(
         },
         onError(error: unknown) {
           responseStatusCode = 500;
-          // Log streaming rendering errors from inside the shell.  Don't log
-          // errors encountered during initial shell rendering since they'll
-          // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
             console.error(error);
           }
@@ -125,9 +118,6 @@ function handleBrowserRequest(
         },
         onError(error: unknown) {
           responseStatusCode = 500;
-          // Log streaming rendering errors from inside the shell.  Don't log
-          // errors encountered during initial shell rendering since they'll
-          // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
             console.error(error);
           }

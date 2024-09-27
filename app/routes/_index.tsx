@@ -20,7 +20,7 @@ export default function Index() {
           Explore our collection of talks and presentations
         </p>
       </header>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {talksData.map((talk: Talk, index: number) => (
           <TalkCard key={index} talk={talk} />
         ))}

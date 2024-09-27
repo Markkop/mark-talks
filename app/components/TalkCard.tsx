@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import { cn } from "~/lib/utils";
 
 export interface Talk {
   title: string;
@@ -30,9 +31,10 @@ export interface Talk {
 export function TalkCard({ talk }: { talk: Talk }) {
   return (
     <Card
-      className={`overflow-hidden transition-all hover:shadow-lg ${
+      className={cn(
+        "overflow-hidden transition-all hover:shadow-lg",
         talk.isPast ? "bg-gray-50" : "bg-white"
-      }`}
+      )}
     >
       <div className="relative h-48 w-full overflow-hidden">
         <img
