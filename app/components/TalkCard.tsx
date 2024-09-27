@@ -25,7 +25,7 @@ export interface Talk {
   title: string;
   date: string;
   location: string;
-  locationLink?: string; // New optional property
+  locationLink?: string;
   description: string;
   presentationLink: string;
   feedbackLink: string;
@@ -44,26 +44,24 @@ const formatDate = (dateString: string) => {
 };
 
 export function TalkCard({ talk }: { talk: Talk }) {
-  const isPast = new Date(talk.date) < new Date();
   const isAfter2023 = new Date(talk.date).getFullYear() >= 2024;
 
   return (
     <Card
       className={cn(
-        "overflow-hidden transition-all hover:shadow-lg",
-        isPast ? "bg-gray-800" : "bg-gray-900"
+        "overflow-hidden transition-all hover:shadow-lg bg-background flex flex-col"
       )}
     >
       <div className="relative h-48 w-full overflow-hidden">
         <img
           src={talk.coverImage}
           alt={`Cover for ${talk.title}`}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
-      <CardHeader className="pb-2">
-        <CardTitle>{talk.title}</CardTitle>
-        <CardDescription className="flex flex-col space-y-1 text-gray-300">
+      <CardHeader className="pb-2 flex-shrink-0">
+        <CardTitle className="line-clamp-2 text-lg">{talk.title}</CardTitle>
+        <CardDescription className="flex flex-col space-y-1 text-sm">
           <div className="flex items-center">
             <CalendarIcon className="mr-2 h-4 w-4" />
             <span>{formatDate(talk.date)}</span>
@@ -75,7 +73,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
                 href={talk.locationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline"
+                className="text-primary hover:underline"
               >
                 {talk.location}
               </a>
@@ -85,21 +83,23 @@ export function TalkCard({ talk }: { talk: Talk }) {
           </div>
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <p className="mb-4 text-sm text-gray-300">{talk.description}</p>
+      <CardContent className="flex-grow flex flex-col">
+        <p className="mb-4 line-clamp-3 text-sm flex-grow">
+          {talk.description}
+        </p>
         <div className="flex flex-wrap gap-2">
           {talk.tags.map((tag, index) => (
             <Badge
               key={index}
               variant="secondary"
-              className="bg-gray-700 text-gray-200"
+              className="bg-secondary text-secondary-foreground transition-colors duration-300 hover:bg-secondary/80"
             >
               {tag}
             </Badge>
           ))}
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between bg-gray-800 p-4">
+      <CardFooter className="flex justify-between bg-muted/50 p-4 flex-shrink-0">
         {[
           {
             icon: PresentationIcon,
@@ -122,8 +122,10 @@ export function TalkCard({ talk }: { talk: Talk }) {
                 <Button
                   variant="outline"
                   className={cn(
-                    "flex items-center",
-                    !link && "cursor-not-allowed opacity-50"
+                    "flex items-center transition-colors duration-300",
+                    link
+                      ? "hover:bg-primary hover:text-primary-foreground"
+                      : "cursor-not-allowed opacity-50"
                   )}
                   disabled={!link}
                 >
