@@ -7,8 +7,29 @@
     "description": "Discover which AI tools you need to know to stay ahead and boost your productivity",
     "presentationLink": "",
     "feedbackLink": "",
-    "isPast": true,
     "coverImage": "https://i.imgur.com/CNFhtZE.png",
     "tags": ["IA", "Cursor", "v0"]
+  },
+  {
+    "title": "Habitica Talk",
+    "date": "2019-09-07",
+    "location": "Flask Conf Floripa",
+    "locationLink": "https://2019.flask.python.org.br/",
+    "description": "How I used Habitica to gamify my life and make my first open source contribution",
+    "presentationLink": "https://docs.google.com/presentation/d/1BCFNadvJbrBUpa4wOWb_reQrAX0QjnWZs05xkAGAA8Y/edit?usp=sharing",
+    "feedbackLink": "",
+    "coverImage": "https://i.imgur.com/FbKUQJX.png",
+    "tags": ["Habitica", "Gamification", "Productivity"]
+  },
+  {
+    "title": "Rails in 2019",
+    "date": "2019-08-27",
+    "location": "Meetup RubyFloripa",
+    "locationLink": "https://www.meetup.com/rubyfloripa/events/263061972/",
+    "description": "Some news, stats and reflexions about Ruby on Rails",
+    "presentationLink": "https://docs.google.com/presentation/d/1d8SST0bhF-O0OEsclPWFsDKQsdAGjpTlEm-l_XSHvzI/edit?usp=sharing",
+    "feedbackLink": "",
+    "coverImage": "https://i.imgur.com/kpyVVsu.png",
+    "tags": ["Ruby", "Rails"]
   }
 ]
