@@ -45,7 +45,7 @@ export default function App() {
   return (
     <html lang="en">
       <body>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={200}>
           <Outlet />
         </TooltipProvider>
       </body>
