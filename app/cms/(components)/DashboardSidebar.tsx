@@ -9,9 +9,9 @@ export default function DashboardNav() {
   const pathname = usePathname();
 
   return (
-    <div className="hidden border-r bg-muted/40 md:block ">
-      <div className="flex h-full max-h-screen flex-col gap-2 ">
-        <div className="flex  items-center  border-b h-[60px] px-6">
+    <div className="hidden border-r bg-background/95 md:block">
+      <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="flex items-center border-b h-[60px] px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <span className="text-lg">SupaNext CMS</span>
           </Link>
@@ -20,9 +20,9 @@ export default function DashboardNav() {
           <nav className="grid items-start text-sm font-medium px-4 gap-[0.2rem]">
             <Link
               className={clsx(
-                "flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                "flex items-center gap-2 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-foreground",
                 {
-                  "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50":
+                  "bg-accent text-foreground":
                     pathname === "/cms" || pathname.includes("/cms/preview/"),
                 }
               )}
@@ -33,10 +33,9 @@ export default function DashboardNav() {
             </Link>
             <Link
               className={clsx(
-                "flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                "flex items-center gap-2 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-foreground",
                 {
-                  "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50":
-                    pathname === "/cms/publish",
+                  "bg-accent text-foreground": pathname === "/cms/publish",
                 }
               )}
               href="/cms/publish"
@@ -46,10 +45,9 @@ export default function DashboardNav() {
             </Link>
             <Link
               className={clsx(
-                "flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                "flex items-center gap-2 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-foreground",
                 {
-                  "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50":
-                    pathname === "/cms/api",
+                  "bg-accent text-foreground": pathname === "/cms/api",
                 }
               )}
               href="/cms/api"
@@ -59,10 +57,9 @@ export default function DashboardNav() {
             </Link>
             <Link
               className={clsx(
-                "flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                "flex items-center gap-2 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-foreground",
                 {
-                  "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50":
-                    pathname === "/cms/settings",
+                  "bg-accent text-foreground": pathname === "/cms/settings",
                 }
               )}
               href="/cms/settings"

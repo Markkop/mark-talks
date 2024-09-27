@@ -28,7 +28,7 @@ export function NavBar() {
   return (
     <div className="flex min-w-full justify-between p-2 border-b z-10">
       <Dialog>
-        <SheetTrigger className="min-[825px]:hidden p-2 transition">
+        <SheetTrigger className="min-[825px]:hidden p-2 transition hover:bg-secondary">
           <GiHamburgerMenu />
         </SheetTrigger>
         <SheetContent side="left">
@@ -41,14 +41,20 @@ export function NavBar() {
           <div className="flex flex-col space-y-3 mt-[1rem]">
             <DialogClose asChild>
               <Link href="/">
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full hover:bg-secondary hover:text-secondary-foreground"
+                >
                   Home
                 </Button>
               </Link>
             </DialogClose>
             <DialogClose asChild>
               <Link href="/cms">
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full hover:bg-secondary hover:text-secondary-foreground"
+                >
                   Dashboard
                 </Button>
               </Link>

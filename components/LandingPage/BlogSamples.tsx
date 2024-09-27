@@ -30,12 +30,12 @@ export default async function BlogSample() {
       <div className="flex flex-col items-center p-3 w-full">
         <div className="flex flex-col justify-start items-center gap-2 w-full">
           <div className="flex gap-3 justify-start items-center w-full">
-            <h1 className="scroll-m-20 text-3xl md:text-4xl tracking-tight font-semibold text-center">
+            <h1 className="scroll-m-20 text-3xl md:text-4xl tracking-tight font-semibold text-center text-primary">
               Some Sample Blog Talks
             </h1>
           </div>
           <div className="flex gap-3 justify-start items-center w-full border-b pb-4">
-            <p className="text-gray-500">
+            <p className="text-muted-foreground">
               All these talks were generated using RankBoost AI
             </p>
           </div>
@@ -45,7 +45,7 @@ export default async function BlogSample() {
         <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-5">
           {talks?.map((talk) => (
             <Link href={"/"} key={talk?.id}>
-              <div className="flex flex-col space-y-2 p-4 rounded-md border">
+              <div className="flex flex-col space-y-2 p-4 rounded-md border bg-card">
                 <Image
                   src={talk?.image!}
                   alt={""}
@@ -54,11 +54,10 @@ export default async function BlogSample() {
                   className="rounded-md border bg-muted transition-colors"
                 />
                 <div className="flex lg:flex-row w-full justify-between items-center">
-                  <h2 className="text-md lg:text-lg font-bold">
+                  <h2 className="text-md lg:text-lg font-bold text-card-foreground">
                     {talk?.title}
                   </h2>
                 </div>
-                {/* <p className="text-muted-foreground">{info?.subtitle}</p> */}
                 <p className="text-sm text-muted-foreground">
                   {new Date(talk?.date!)?.toLocaleDateString()}
                 </p>

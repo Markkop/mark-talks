@@ -17,6 +17,9 @@ importers:
       '@clerk/nextjs':
         specifier: ^5.0.7
         version: 5.6.2(next@14.1.4(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@clerk/themes':
+        specifier: ^2.1.32
+        version: 2.1.32
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -393,6 +396,10 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  '@clerk/themes@2.1.32':
+    resolution: {integrity: sha512-Wv2zS6LrB4VVsL1xb6oXNcX1G9xoKxwOAcpSxqjvY5PyKhnp2WFWNtoKkugOJskTvtHdxVbEhkjaUQCP3plVYQ==}
+    engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.22.0':
     resolution: {integrity: sha512-QSs8NzZlb1QyFuPf52M1Rjg+BO0/ZVMUYT/YLzZvMdhKpwOn5woVxXTlisqHxcidJqSXvmYAwxL4PZ0LFs89RQ==}
@@ -4308,6 +4315,11 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
+  '@clerk/themes@2.1.32':
+    dependencies:
+      '@clerk/types': 4.22.0
+      tslib: 2.4.1
+
   '@clerk/types@4.22.0':
     dependencies:
       csstype: 3.1.1
@@ -6070,7 +6082,7 @@ snapshots:
   dot-case@3.0.4:
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.7.0
 
   eastasianwidth@0.2.0: {}
 
@@ -7055,7 +7067,7 @@ snapshots:
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.7.0
 
   lru-cache@10.4.3: {}
 
@@ -7470,7 +7482,7 @@ snapshots:
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.4.1
+      tslib: 2.7.0
 
   node-domexception@1.0.0: {}
 
@@ -8080,7 +8092,7 @@ snapshots:
   snake-case@3.0.4:
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: 2.7.0
 
   snakecase-keys@5.4.4:
     dependencies:
