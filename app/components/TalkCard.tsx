@@ -52,10 +52,28 @@ const formatDate = (dateString: string) => {
 export function TalkCard({ talk }: { talk: Talk }) {
   const isAfter2023 = new Date(talk.date).getFullYear() >= 2024;
 
+  const buttons = [
+    {
+      icon: PresentationIcon,
+      text: "View Presentation",
+      link: talk.presentationLink,
+    },
+    ...(isAfter2023
+      ? [
+          {
+            icon: MessageSquareIcon,
+            text: "Provide Feedback",
+            link: talk.feedbackLink,
+          },
+        ]
+      : []),
+  ];
+
   return (
     <Card
       className={cn(
-        "overflow-hidden transition-all hover:shadow-lg bg-surface flex flex-col border border-secondary/20"
+        "overflow-hidden transition-all hover:shadow-lg bg-surface flex flex-col border border-secondary/20",
+        "group"
       )}
     >
       <div className="relative h-48 w-full overflow-hidden">
@@ -63,12 +81,13 @@ export function TalkCard({ talk }: { talk: Talk }) {
           src={talk.coverImage}
           alt={`Cover for ${talk.title}`}
           className={cn(
-            "absolute inset-0 h-full w-full transition-transform duration-300 hover:scale-105",
+            "absolute inset-0 h-full w-full transition-transform duration-300 group-hover:scale-105",
             talk.topCover
               ? "object-cover object-top"
               : "object-cover object-center"
           )}
         />
+        <div className="absolute inset-0 bg-black/30 transition-opacity duration-300 group-hover:opacity-0" />
       </div>
       <CardHeader className="pb-2 flex-shrink-0">
         <CardTitle className="line-clamp-2 text-lg text-secondary">
@@ -129,38 +148,38 @@ export function TalkCard({ talk }: { talk: Talk }) {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between bg-surface p-4 flex-shrink-0">
-        {[
-          {
-            icon: PresentationIcon,
-            text: "View Presentation",
-            link: talk.presentationLink,
-          },
-          ...(isAfter2023
-            ? [
-                {
-                  icon: MessageSquareIcon,
-                  text: "Provide Feedback",
-                  link: talk.feedbackLink,
-                },
-              ]
-            : []),
-        ].map(({ icon: Icon, text, link }) => (
+        {buttons.map(({ icon: Icon, text, link }) => (
           <Tooltip key={text}>
             <TooltipTrigger asChild>
               <div className="inline-block">
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "flex items-center transition-colors duration-300",
-                    link
-                      ? "hover:bg-primary hover:text-primary-foreground"
-                      : "cursor-not-allowed opacity-50"
-                  )}
-                  disabled={!link}
-                >
-                  <Icon className="mr-2 h-4 w-4" />
-                  {text}
-                </Button>
+                {link ? (
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block"
+                  >
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "flex items-center transition-colors duration-300",
+                        "hover:bg-primary hover:text-primary-foreground"
+                      )}
+                    >
+                      <Icon className="mr-2 h-4 w-4" />
+                      {text}
+                    </Button>
+                  </a>
+                ) : (
+                  <Button
+                    variant="outline"
+                    className="flex items-center transition-colors duration-300 cursor-not-allowed opacity-50"
+                    disabled
+                  >
+                    <Icon className="mr-2 h-4 w-4" />
+                    {text}
+                  </Button>
+                )}
               </div>
             </TooltipTrigger>
             {!link && (
