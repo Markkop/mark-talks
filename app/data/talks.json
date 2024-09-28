@@ -60,13 +60,14 @@
     "coverImage": "https://i.imgur.com/FbKUQJX.png",
     "tags": [
       { "label": "Habitica", "url": "https://habitica.com" },
+      { "label": "github", "url": "https://github.com/HabitRPG/habitica" },
       {
-        "label": "Gamification",
-        "url": "https://en.wikipedia.org/wiki/Gamification"
+        "label": "blogpost",
+        "url": "https://dev.to/heymarkkop/my-first-open-source-contribution-21dh"
       },
       {
-        "label": "Productivity",
-        "url": "https://en.wikipedia.org/wiki/Productivity"
+        "label": "pr",
+        "url": "https://github.com/HabitRPG/habitica/pull/11375"
       }
     ],
     "topCover": false
@@ -82,7 +83,15 @@
     "coverImage": "https://i.imgur.com/kpyVVsu.png",
     "tags": [
       { "label": "Ruby", "url": "https://www.ruby-lang.org/en/" },
-      { "label": "Rails", "url": "https://rubyonrails.org" }
+      { "label": "Rails", "url": "https://rubyonrails.org" },
+      {
+        "label": "survey",
+        "url": "https://survey.stackoverflow.co/"
+      },
+      {
+        "label": "blogpost",
+        "url": "https://naturaily.com/blog/who-gives-f-about-rails"
+      }
     ],
     "topCover": true
   }

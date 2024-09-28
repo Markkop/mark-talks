@@ -90,10 +90,10 @@ export function TalkCard({ talk }: { talk: Talk }) {
         <div className="absolute inset-0 bg-black/30 transition-opacity duration-300 group-hover:opacity-0" />
       </div>
       <CardHeader className="pb-2 flex-shrink-0">
-        <CardTitle className="line-clamp-2 text-lg text-secondary">
+        <CardTitle className="line-clamp-2 text-base lg:text-sm text-secondary">
           {talk.title}
         </CardTitle>
-        <CardDescription className="flex flex-col space-y-1 text-sm text-secondary/80">
+        <CardDescription className="flex flex-col space-y-1 text-sm lg:text-xs text-secondary/80">
           <div className="flex items-center">
             <CalendarIcon className="mr-2 h-4 w-4" />
             <span>{formatDate(talk.date)}</span>
@@ -116,7 +116,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
-        <p className="mb-4 line-clamp-3 text-sm flex-grow text-secondary/70">
+        <p className="mb-4 line-clamp-3 text-sm lg:text-xs flex-grow text-secondary/70">
           {talk.description}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -163,7 +163,8 @@ export function TalkCard({ talk }: { talk: Talk }) {
                       variant="outline"
                       className={cn(
                         "flex items-center transition-colors duration-300",
-                        "hover:bg-primary hover:text-primary-foreground"
+                        "hover:bg-primary hover:text-primary-foreground",
+                        "text-sm lg:text-xs"
                       )}
                     >
                       <Icon className="mr-2 h-4 w-4" />
@@ -173,7 +174,10 @@ export function TalkCard({ talk }: { talk: Talk }) {
                 ) : (
                   <Button
                     variant="outline"
-                    className="flex items-center transition-colors duration-300 cursor-not-allowed opacity-50"
+                    className={cn(
+                      "flex items-center transition-colors duration-300 cursor-not-allowed opacity-50",
+                      "text-sm lg:text-xs"
+                    )}
                     disabled
                   >
                     <Icon className="mr-2 h-4 w-4" />
