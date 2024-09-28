@@ -9,6 +9,7 @@ body {
 
 @layer base {
   :root {
+    color-scheme: dark;
     --background: 0 0% 6%;
     --foreground: 160 6% 79%;
     --card: 0 0% 12%;
