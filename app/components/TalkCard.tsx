@@ -55,14 +55,14 @@ export function TalkCard({ talk }: { talk: Talk }) {
   const buttons = [
     {
       icon: PresentationIcon,
-      text: "View Presentation",
+      text: "Presentation",
       link: talk.presentationLink,
     },
     ...(isAfter2023
       ? [
           {
             icon: MessageSquareIcon,
-            text: "Provide Feedback",
+            text: "Feedback",
             link: talk.feedbackLink,
           },
         ]
