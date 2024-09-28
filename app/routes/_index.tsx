@@ -28,7 +28,7 @@ export default function Index() {
           particleColor="#FFFFFF"
         />
       </div>
-      <main className="container mx-auto px-4 py-8 relative z-10">
+      <main className="px-4 py-8 relative z-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {sortedTalks.map((talk, index) => (
             <TalkCard key={index} talk={talk} />
