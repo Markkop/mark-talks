@@ -55,7 +55,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
   return (
     <Card
       className={cn(
-        "overflow-hidden transition-all hover:shadow-lg bg-background flex flex-col border border-border"
+        "overflow-hidden transition-all hover:shadow-lg bg-surface flex flex-col border border-secondary/20"
       )}
     >
       <div className="relative h-48 w-full overflow-hidden">
@@ -71,8 +71,10 @@ export function TalkCard({ talk }: { talk: Talk }) {
         />
       </div>
       <CardHeader className="pb-2 flex-shrink-0">
-        <CardTitle className="line-clamp-2 text-lg">{talk.title}</CardTitle>
-        <CardDescription className="flex flex-col space-y-1 text-sm">
+        <CardTitle className="line-clamp-2 text-lg text-secondary">
+          {talk.title}
+        </CardTitle>
+        <CardDescription className="flex flex-col space-y-1 text-sm text-secondary/80">
           <div className="flex items-center">
             <CalendarIcon className="mr-2 h-4 w-4" />
             <span>{formatDate(talk.date)}</span>
@@ -95,7 +97,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
-        <p className="mb-4 line-clamp-3 text-sm flex-grow">
+        <p className="mb-4 line-clamp-3 text-sm flex-grow text-secondary/70">
           {talk.description}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -106,8 +108,8 @@ export function TalkCard({ talk }: { talk: Talk }) {
               className={cn(
                 "transition-colors duration-300",
                 tag.url
-                  ? "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  ? "bg-primary/10 text-primary hover:bg-primary/20"
+                  : "bg-secondary/10 text-secondary hover:bg-secondary/20"
               )}
             >
               {tag.url ? (
@@ -126,7 +128,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
           ))}
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between bg-muted/50 p-4 flex-shrink-0">
+      <CardFooter className="flex justify-between bg-surface p-4 flex-shrink-0">
         {[
           {
             icon: PresentationIcon,
