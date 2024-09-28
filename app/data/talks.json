@@ -8,7 +8,45 @@
     "presentationLink": "",
     "feedbackLink": "",
     "coverImage": "https://i.imgur.com/CNFhtZE.png",
-    "tags": ["IA", "Cursor", "v0"],
+    "tags": [
+      { "label": "v0", "url": "https://v0.dev/" },
+      { "label": "ChatGPT", "url": "https://chatgpt.com/" },
+      { "label": "Claude AI", "url": "https://claude.ai/" },
+      { "label": "Phind", "url": "https://www.phind.com" },
+      { "label": "Supermaven", "url": "https://www.supermaven.com" },
+      { "label": "Codeium", "url": "https://codeium.com" },
+      {
+        "label": "Claude Dev",
+        "url": "https://github.com/saoudrizwan/claude-dev"
+      },
+      { "label": "Cursor", "url": "https://cursor.sh" },
+      { "label": "Zed", "url": "https://zed.dev" },
+      { "label": "Void", "url": "https://voideditor.com/" },
+      {
+        "label": "OpenHands",
+        "url": "https://github.com/All-Hands-AI/OpenHands"
+      },
+      {
+        "label": "Devin",
+        "url": "https://www.cognition.ai/blog/introducing-devin"
+      },
+      {
+        "label": "@AICodeKing",
+        "url": "https://www.youtube.com/@AICodeKing"
+      },
+      {
+        "label": "@intheworldofai",
+        "url": "https://www.youtube.com/@intheworldofai"
+      },
+      {
+        "label": "video",
+        "url": "https://www.youtube.com/watch?v=TBIjgBVFjVI"
+      },
+      {
+        "label": "podcast",
+        "url": "https://www.youtube.com/watch?v=uRuLgar5XZw"
+      }
+    ],
     "topCover": false
   },
   {
@@ -20,7 +58,17 @@
     "presentationLink": "https://docs.google.com/presentation/d/1BCFNadvJbrBUpa4wOWb_reQrAX0QjnWZs05xkAGAA8Y/edit?usp=sharing",
     "feedbackLink": "",
     "coverImage": "https://i.imgur.com/FbKUQJX.png",
-    "tags": ["Habitica", "Gamification", "Productivity"],
+    "tags": [
+      { "label": "Habitica", "url": "https://habitica.com" },
+      {
+        "label": "Gamification",
+        "url": "https://en.wikipedia.org/wiki/Gamification"
+      },
+      {
+        "label": "Productivity",
+        "url": "https://en.wikipedia.org/wiki/Productivity"
+      }
+    ],
     "topCover": false
   },
   {
@@ -32,7 +80,10 @@
     "presentationLink": "https://docs.google.com/presentation/d/1d8SST0bhF-O0OEsclPWFsDKQsdAGjpTlEm-l_XSHvzI/edit?usp=sharing",
     "feedbackLink": "",
     "coverImage": "https://i.imgur.com/kpyVVsu.png",
-    "tags": ["Ruby", "Rails"],
+    "tags": [
+      { "label": "Ruby", "url": "https://www.ruby-lang.org/en/" },
+      { "label": "Rails", "url": "https://rubyonrails.org" }
+    ],
     "topCover": true
   }
 ]

@@ -21,6 +21,11 @@ import {
 } from "~/components/ui/tooltip";
 import { cn } from "~/lib/utils";
 
+export interface Tag {
+  label: string;
+  url?: string;
+}
+
 export interface Talk {
   title: string;
   date: string;
@@ -30,7 +35,7 @@ export interface Talk {
   presentationLink: string;
   feedbackLink: string;
   coverImage: string;
-  tags: string[];
+  tags: Tag[];
   topCover?: boolean;
 }
 
@@ -98,9 +103,25 @@ export function TalkCard({ talk }: { talk: Talk }) {
             <Badge
               key={index}
               variant="secondary"
-              className="bg-secondary text-secondary-foreground transition-colors duration-300 hover:bg-secondary/80"
+              className={cn(
+                "transition-colors duration-300",
+                tag.url
+                  ? "bg-blue-100 text-blue-800 hover:bg-blue-200"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+              )}
             >
-              {tag}
+              {tag.url ? (
+                <a
+                  href={tag.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  {tag.label}
+                </a>
+              ) : (
+                tag.label
+              )}
             </Badge>
           ))}
         </div>
