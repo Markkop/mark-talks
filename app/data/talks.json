@@ -10,26 +10,9 @@
     "coverImage": "https://i.imgur.com/CNFhtZE.png",
     "tags": [
       { "label": "v0", "url": "https://v0.dev/" },
-      { "label": "ChatGPT", "url": "https://chatgpt.com/" },
-      { "label": "Claude AI", "url": "https://claude.ai/" },
       { "label": "Phind", "url": "https://www.phind.com" },
-      { "label": "Supermaven", "url": "https://www.supermaven.com" },
-      { "label": "Codeium", "url": "https://codeium.com" },
-      {
-        "label": "Claude Dev",
-        "url": "https://github.com/saoudrizwan/claude-dev"
-      },
+      { "label": "Aider", "url": "https://github.com/paul-gauthier/aider" },
       { "label": "Cursor", "url": "https://cursor.sh" },
-      { "label": "Zed", "url": "https://zed.dev" },
-      { "label": "Void", "url": "https://voideditor.com/" },
-      {
-        "label": "OpenHands",
-        "url": "https://github.com/All-Hands-AI/OpenHands"
-      },
-      {
-        "label": "Devin",
-        "url": "https://www.cognition.ai/blog/introducing-devin"
-      },
       {
         "label": "@AICodeKing",
         "url": "https://www.youtube.com/@AICodeKing"
