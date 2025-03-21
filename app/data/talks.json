@@ -1,5 +1,22 @@
 [
   {
+    "title": "State of AI 2025",
+    "date": "2025-03-22",
+    "location": "Meetup FloripaJS",
+    "locationLink": "https://www.meetup.com/floripajs/events/306419173",
+    "description": "Deep dive into the latest AI breakthroughs, emerging architectures, and how they're reshaping software development. From local LLMs to AI agents, explore what's next in the AI revolution.",
+    "presentationLink": "https://docs.google.com/presentation/d/1XIx461UwqQDwO-j9bc-ppZVU0vikgahO_D9hN6I_a4g/edit?usp=sharing",
+    "feedbackLink": "",
+    "coverImage": "https://secure.meetupstatic.com/photos/event/8/f/3/4/600_526476660.webp?w=750",
+    "tags": [
+      { "label": "Cursor", "url": "https://cursor.sh" },
+      { "label": "v0", "url": "https://v0.dev/" },
+      { "label": "mcp", "url": "https://www.claudemcp.com/" },
+      { "label": "LLM Arena", "url": "https://lmarena.ai/" }
+    ],
+    "topCover": true
+  },
+  {
     "title": "10x Dev AI",
     "date": "2024-10-01",
     "location": "Meetup Codecon FLN",
