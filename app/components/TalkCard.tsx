@@ -4,8 +4,6 @@ import {
   MessageSquareIcon,
   PresentationIcon,
 } from "lucide-react";
-import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,17 +12,11 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/components/ui/tooltip";
 import { cn } from "~/lib/utils";
-
-export interface Tag {
-  label: string;
-  url?: string;
-}
+import { TagList, type Tag } from "~/components/common/TagList";
+import { ImageGallery } from "~/components/common/ImageGallery";
+import { CardButton } from "~/components/common/CardButton";
+import { CornerIcon } from "~/components/common/CornerIcon";
 
 export interface Talk {
   title: string;
@@ -72,23 +64,16 @@ export function TalkCard({ talk }: { talk: Talk }) {
   return (
     <Card
       className={cn(
-        "overflow-hidden transition-all hover:shadow-lg bg-surface flex flex-col border border-secondary/20",
+        "overflow-hidden transition-all hover:shadow-lg bg-surface flex flex-col border border-amber-400/30 relative",
         "group"
       )}
     >
-      <div className="relative h-48 w-full overflow-hidden">
-        <img
-          src={talk.coverImage}
-          alt={`Cover for ${talk.title}`}
-          className={cn(
-            "absolute inset-0 h-full w-full transition-transform duration-300 group-hover:scale-105",
-            talk.topCover
-              ? "object-cover object-top"
-              : "object-cover object-center"
-          )}
-        />
-        <div className="absolute inset-0 bg-black/30 transition-opacity duration-300 group-hover:opacity-0" />
-      </div>
+      <CornerIcon type="talk" />
+      <ImageGallery
+        images={[talk.coverImage]}
+        title={talk.title}
+        topCover={talk.topCover}
+      />
       <CardHeader className="pb-2 flex-shrink-0">
         <CardTitle className="line-clamp-2 text-base lg:text-sm text-secondary">
           {talk.title}
@@ -105,7 +90,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
                 href={talk.locationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline"
+                className="text-amber-600 hover:underline"
               >
                 {talk.location}
               </a>
@@ -119,79 +104,19 @@ export function TalkCard({ talk }: { talk: Talk }) {
         <p className="mb-4 line-clamp-3 text-sm lg:text-xs flex-grow text-secondary/70">
           {talk.description}
         </p>
-        <div className="flex flex-wrap gap-2">
-          {talk.tags.map((tag, index) => (
-            <Badge
-              key={index}
-              variant="secondary"
-              className={cn(
-                "transition-colors duration-300",
-                tag.url
-                  ? "bg-primary/10 text-primary hover:bg-primary/20"
-                  : "bg-secondary/10 text-secondary hover:bg-secondary/20"
-              )}
-            >
-              {tag.url ? (
-                <a
-                  href={tag.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline"
-                >
-                  {tag.label}
-                </a>
-              ) : (
-                tag.label
-              )}
-            </Badge>
-          ))}
-        </div>
+        <TagList tags={talk.tags} variant="talk" />
       </CardContent>
       <CardFooter className="flex justify-between bg-surface p-4 flex-shrink-0">
-        {buttons.map(({ icon: Icon, text, link }) => (
-          <Tooltip key={text}>
-            <TooltipTrigger asChild>
-              <div className="inline-block">
-                {link ? (
-                  <a
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block"
-                  >
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "flex items-center transition-colors duration-300",
-                        "hover:bg-primary hover:text-primary-foreground",
-                        "text-sm lg:text-xs"
-                      )}
-                    >
-                      <Icon className="mr-2 h-4 w-4" />
-                      {text}
-                    </Button>
-                  </a>
-                ) : (
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      "flex items-center transition-colors duration-300 cursor-not-allowed opacity-50",
-                      "text-sm lg:text-xs"
-                    )}
-                    disabled
-                  >
-                    <Icon className="mr-2 h-4 w-4" />
-                    {text}
-                  </Button>
-                )}
-              </div>
-            </TooltipTrigger>
-            {!link && (
-              <TooltipContent>
-                <p>Not available yet</p>
-              </TooltipContent>
-            )}
-          </Tooltip>
+        {buttons.map(({ icon, text, link }) => (
+          <CardButton
+            key={text}
+            icon={icon}
+            text={text}
+            url={link}
+            enabled={!!link}
+            disabledReason="Not available yet"
+            variant="talk"
+          />
         ))}
       </CardFooter>
     </Card>
