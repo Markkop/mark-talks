@@ -373,5 +373,89 @@
         "enabled": true
       }
     ]
+  },
+  {
+    "title": "E-Commerce Solutions",
+    "date": "2019 - 2021",
+    "client": {
+      "name": "Linx",
+      "url": "https://www.linx.com.br/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "Product search, recommendation, showcase and banners.",
+    "images": ["/images/lnx-1.png"],
+    "tags": [
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "HTML",
+      "CSS",
+      "jQuery",
+      "WordPress"
+    ],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "About",
+        "icon": "globe",
+        "url": "https://www.linx.com.br/busca-e-personalizacao/",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Web AR Business Card",
+    "date": "2021",
+    "client": {
+      "name": "ArcTouch",
+      "url": "https://www.arctouch.com/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": "."
+    },
+    "description": "A proof of concept for a business card that uses a marker to display 3D models using Augmented Reality.",
+    "images": ["/images/web-ar.png"],
+    "tags": ["AR.js", "A-Frame", "HTML", "CSS", "JavaScript"],
+    "buttons": [
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/web-ar-testing",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Metaverse Project",
+    "date": "2022",
+    "client": {
+      "name": "ArcTouch",
+      "url": "https://www.arctouch.com/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "A proof of concept for making a Decentraland plot/scene interacting with external APIs",
+    "images": [
+      "/images/metaverse-3.png",
+      "/images/metaverse-1.jpg",
+      "/images/metaverse-2.png"
+    ],
+    "tags": ["Decentraland", "Metaverse", "TypeScript", "Web3"],
+    "buttons": [
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/decentraland-scene-test",
+        "enabled": true
+      }
+    ]
   }
 ]
