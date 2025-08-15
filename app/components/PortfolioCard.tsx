@@ -119,7 +119,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="cursor-help text-sm lg:text-xs">
-                    AI-Generated
+                    Built with AI
                   </span>
                 </TooltipTrigger>
                 <TooltipContent>
