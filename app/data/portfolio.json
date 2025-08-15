@@ -38,7 +38,7 @@
       "level": "Full",
       "description": "README notes that refactors and new implementations were largely produced with ChatGPT and Genie VS Code, exposing a live UI that calls OpenAI models."
     },
-    "description": "A web tool that fetches files from a GitHub repository, merges them into a single context, and sends the result to an OpenAI model (or allows copy–paste into chatbots). Features include token/key handling, streamed responses, and private-repo access with tokens.",
+    "description": "A tool that fetches files from a GitHub repository, merges them into a single context, and allows for easy copy–paste into chatbots).",
     "images": ["/images/repogpt.png", "/images/repogpt-github.png"],
     "tags": ["Next.js", "TypeScript", "OpenAI API", "Tailwind CSS", "Vercel"],
     "buttons": [
@@ -387,15 +387,7 @@
     },
     "description": "Product search, recommendation, showcase and banners.",
     "images": ["/images/lnx-1.png"],
-    "tags": [
-      "JavaScript",
-      "PHP",
-      "MySQL",
-      "HTML",
-      "CSS",
-      "jQuery",
-      "WordPress"
-    ],
+    "tags": ["JavaScript", "PHP", "jQuery", "Vue.js"],
     "buttons": [
       {
         "type": "view",
@@ -421,6 +413,14 @@
     "images": ["/images/web-ar.png"],
     "tags": ["AR.js", "A-Frame", "HTML", "CSS", "JavaScript"],
     "buttons": [
+      {
+        "type": "view",
+        "text": "View",
+        "icon": "globe",
+        "url": "",
+        "enabled": false,
+        "disabledReason": "Private project"
+      },
       {
         "type": "source",
         "text": "Repo",
@@ -449,6 +449,14 @@
     ],
     "tags": ["Decentraland", "Metaverse", "TypeScript", "Web3"],
     "buttons": [
+      {
+        "type": "view",
+        "text": "View",
+        "icon": "globe",
+        "url": "",
+        "enabled": false,
+        "disabledReason": "Private project"
+      },
       {
         "type": "source",
         "text": "Repo",
