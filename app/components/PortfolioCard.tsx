@@ -95,14 +95,18 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
             ) : (
               <>
                 <BuildingIcon className="mr-2 h-4 w-4" />
-                <a
-                  href={item.client.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  {item.client.name}
-                </a>
+                {item.client.url ? (
+                  <a
+                    href={item.client.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    {item.client.name}
+                  </a>
+                ) : (
+                  <span>{item.client.name}</span>
+                )}
               </>
             )}
           </div>

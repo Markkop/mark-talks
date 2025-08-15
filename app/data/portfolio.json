@@ -275,8 +275,8 @@
     ]
   },
   {
-    "title": "Codecon – Community Event Tools (Site & Bots)",
-    "date": "2021 - 2025",
+    "title": "Gather Websocket API Integration",
+    "date": "2021",
     "client": {
       "name": "Codecon",
       "url": "https://codecon.dev/"
@@ -285,8 +285,8 @@
       "level": "None",
       "description": "Volunteer/open community work including website and gamification utilities (Discord bot and small tools)."
     },
-    "description": "As a co‑organizer, Mark contributed engineering to Codecon's developer events—public site, Discord integrations, and 'code-codes' gamification bot for ranks, claims, and token management.",
-    "images": ["/images/codecon.png", "/images/codecon-github.png"],
+    "description": "An API integration with Gather Websocket to get statistics and create player interactions for the Codecon Online event.",
+    "images": ["/images/codecon-gather-1.jpg"],
     "tags": ["JavaScript", "discord.js", "Node.js"],
     "buttons": [
       {
@@ -294,13 +294,213 @@
         "text": "Visit",
         "icon": "globe",
         "url": "https://codecon.dev/",
+        "enabled": false,
+        "disabledReason": "Project offline"
+      },
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/codecon-gather-api",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Gamification API",
+    "date": "2021",
+    "client": {
+      "name": "Codecon",
+      "url": "https://codecon.dev/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "After building the Codecon Discord bot, we decided to move the gamification logic to a separate API so we could integrate it with the Codecon App",
+    "images": ["/images/codecodes-api-1.png"],
+    "tags": ["JavaScript", "Node.js"],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Visit",
+        "icon": "globe",
+        "url": "https://codecon.dev/",
+        "enabled": false,
+        "disabledReason": "Project offline"
+      },
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/codecon-dev/codecodes-api",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Discord Bot",
+    "date": "2021",
+    "client": {
+      "name": "Codecon",
+      "url": "https://codecon.dev/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": "Volunteer/open community work including website and gamification utilities (Discord bot and small tools)."
+    },
+    "description": "A Discord bot for the Codecon community, used to manage ranks, claims, and token management.",
+    "images": ["/images/codecon-discord-bot-1.jpg"],
+    "tags": ["JavaScript", "discord.js", "Node.js"],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Visit",
+        "icon": "globe",
+        "url": "https://codecon.dev/",
+        "enabled": false,
+        "disabledReason": "Project offline"
+      },
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/codecon-dev/codecon-codes",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "LinkTree Clone",
+    "date": "2024",
+    "client": {
+      "name": "Personal",
+      "url": "https://markkop.dev/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "A simple linktree clone to make my links more accessible.",
+    "images": ["/images/linktree-1.png"],
+    "tags": ["Next.js", "Tailwind CSS"],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Visit",
+        "icon": "globe",
+        "url": "https://linktree.markkop.dev/",
         "enabled": true
       },
       {
         "type": "source",
         "text": "Repo",
         "icon": "code",
-        "url": "https://github.com/codecon-dev",
+        "url": "https://github.com/Markkop/linktree",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Multiple Playlist Deleter",
+    "date": "2023",
+    "client": {
+      "name": "Personal",
+      "url": "https://markkop.dev/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "A tool to delete multiple playlists from a Spotify account.",
+    "images": ["/images/spotify-1.jpeg"],
+    "tags": ["JavaScript", "Spotify API"],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Visit",
+        "icon": "globe",
+        "url": "https://multiple-playlist-deleter.vercel.app/",
+        "enabled": true
+      },
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/Multiple-Playlist-deleter",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "MMORPG Guild Website",
+    "date": "2024",
+    "client": {
+      "name": "Personal",
+      "url": "https://www.corvosdeefrim.com/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "A website for the Corvos de Efrim community across multiple games such as Wakfu, Dofus and Waven.",
+    "images": ["/images/corvos-1.png"],
+    "tags": ["Next.js", "Tailwind CSS"],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Visit",
+        "icon": "globe",
+        "url": "https://www.corvosdeefrim.com/",
+        "enabled": true
+      },
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/corvos-de-efrim-website/",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Web3 Rewards Tracker",
+    "date": "2022",
+    "client": {
+      "name": "Multiple Clients",
+      "url": ""
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "A web app to track crypto rewards for web3 clients and users",
+    "images": [
+      "/images/retrocade-rewards-1.png",
+      "/images/shilly-1.png",
+      "/images/cryptoheadz-1.png"
+    ],
+    "tags": [
+      "Next.js",
+      "Tailwind CSS",
+      "GraphQL",
+      "Blockchain",
+      "BitQuery",
+      "PancakeSwap API"
+    ],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Visit",
+        "icon": "globe",
+        "url": "https://retrocade-rewards-tracker.vercel.app/",
+        "enabled": true
+      },
+      {
+        "type": "source",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/retrocade-earnings-checker",
         "enabled": true
       }
     ]
@@ -345,7 +545,7 @@
   },
   {
     "title": "YouTube – Download & Cut",
-    "date": "2023",
+    "date": "2020",
     "client": {
       "name": "Personal",
       "url": "https://markkop.dev/"
@@ -376,7 +576,7 @@
   },
   {
     "title": "E-Commerce Solutions",
-    "date": "2019 - 2021",
+    "date": "2019",
     "client": {
       "name": "Linx",
       "url": "https://www.linx.com.br/"
@@ -385,7 +585,7 @@
       "level": "None",
       "description": ""
     },
-    "description": "Product search, recommendation, showcase and banners.",
+    "description": "Product search, recommendation, showcase and banners integrations",
     "images": ["/images/lnx-1.png"],
     "tags": ["JavaScript", "PHP", "jQuery", "Vue.js"],
     "buttons": [
