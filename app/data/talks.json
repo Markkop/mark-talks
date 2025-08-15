@@ -12,20 +12,11 @@
       { "label": "flow", "url": "https://wisprflow.ai/" },
       { "label": "bolt", "url": "https://bolt.new/" },
       { "label": "suno", "url": "https://suno.com/" },
-      {
-        "label": "workspace",
-        "url": "https://githubnext.com/projects/copilot-workspace"
-      },
-      {
-        "label": "awesome-cursor-mpc-server",
-        "url": "https://github.com/kleneway/awesome-cursor-mpc-server"
-      },
+
       { "label": "ai json video", "url": "https://youtu.be/fJgFZRGO9AQ" },
       { "label": "browsertools", "url": "https://browsertools.agentdesk.ai" },
       { "label": "cursor", "url": "https://cursor.directory/mcp" },
       { "label": "claude", "url": "https://www.claudemcp.com/servers" },
-      { "label": "glama", "url": "https://glama.ai/mcp/servers" },
-      { "label": "smithery", "url": "https://smithery.ai/" },
       { "label": "LLM Arena", "url": "https://lmarena.ai/" }
     ],
     "topCover": true

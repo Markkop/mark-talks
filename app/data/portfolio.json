@@ -10,7 +10,7 @@
       "level": "Incremental",
       "description": "Most code handcrafted, AI only as pair"
     },
-    "description": "Complete website migration from Wordpress to NextJs, with handcrafted landing pages, job listing service API integration and a blog powered by StrapiCMS. Also features a client portal.",
+    "description": "Website migration from Wordpress to NextJs, with handcrafted landing pages, job listing service API integration and a blog powered by StrapiCMS. Also features a client portal.",
     "images": [
       "/images/halborn.png",
       "/images/halborn-blog.png",
@@ -38,7 +38,7 @@
       "level": "Full",
       "description": "README notes that refactors and new implementations were largely produced with ChatGPT and Genie VS Code, exposing a live UI that calls OpenAI models."
     },
-    "description": "A tool that fetches files from a GitHub repository, merges them into a single context, and allows for easy copy–paste into chatbots).",
+    "description": "A tool that fetches files from a GitHub repository, merges them into a single context allowing for easy copy–paste into chatbots.",
     "images": ["/images/repogpt.png", "/images/repogpt-github.png"],
     "tags": ["Next.js", "TypeScript", "OpenAI API", "Tailwind CSS", "Vercel"],
     "buttons": [
@@ -66,8 +66,8 @@
       "url": "https://markkop.dev/"
     },
     "aiUsage": {
-      "level": "Incremental",
-      "description": "Project is marked with a 'made with AI' badge; likely AI-assisted scaffolding while Mark curated UX and repo integration."
+      "level": "Full",
+      "description": ""
     },
     "description": "Web utility that scans a GitHub repository for environment variable usage and produces a .env file example.",
     "images": [
@@ -101,9 +101,9 @@
     },
     "aiUsage": {
       "level": "Full",
-      "description": "Shipped as part of a 'built-with-AI' set of experiments; lightweight functionality that fits well with AI-generated scaffolding."
+      "description": ""
     },
-    "description": "A micro‑app to track shaving history. Part of a trio of lightweight apps I published while exploring AI-led prototyping and rapid deployment.",
+    "description": "A micro‑app to track shaving history.",
     "images": ["/images/beard-tracker.png"],
     "tags": ["React", "TypeScript", "Netlify"],
     "buttons": [
@@ -125,7 +125,7 @@
     },
     "aiUsage": {
       "level": "Full",
-      "description": "Prototype created with an AI agent platform and deployed quickly; suggests AI-driven code generation and iteration."
+      "description": ""
     },
     "description": "Small utility that ingests receipt data and outputs parsed values for budgeting or claims. Built with Replit Agent",
     "images": ["/images/receipt-processor.png"],
@@ -149,7 +149,7 @@
     },
     "aiUsage": {
       "level": "Full",
-      "description": "One of several apps shipped in an AI-assisted burst; scope and velocity suggest AI scaffolding plus manual polishing."
+      "description": ""
     },
     "description": "A minimal public board to capture and iterate prompts for LLM workflows; designed for quick capture and sharing during experiments.",
     "images": ["/images/prompt-mural.png"],
@@ -173,7 +173,7 @@
     },
     "aiUsage": {
       "level": "None",
-      "description": "Hands-on learning project built with a standard Web3 stack (Next.js, Hardhat, Solidity) and deployed on Vercel."
+      "description": ""
     },
     "description": "A full‑stack DApp for minting, listing, buying, and managing NFTs. Integrates IPFS via Pinata, MetaMask wallet, and testnet deployment scripts.",
     "images": [
@@ -215,7 +215,7 @@
     },
     "aiUsage": {
       "level": "None",
-      "description": "Open-source bot built with TypeScript/Node to serve the Wakfu MMORPG community; featured on bot directories and forums."
+      "description": ""
     },
     "description": "Multi-language Discord bot offering Wakfu info, calculators and utilities. Used in 500+ servers",
     "images": [
@@ -249,7 +249,7 @@
     },
     "aiUsage": {
       "level": "None",
-      "description": "Cross‑platform voice app built with the Jovo framework targeting Amazon Alexa and Google Assistant."
+      "description": ""
     },
     "description": "A Google App/Alexa Skill for ZenithVR MMORPG that delivers in‑game information via natural speech interfaces.",
     "images": [
@@ -283,7 +283,7 @@
     },
     "aiUsage": {
       "level": "None",
-      "description": "Volunteer/open community work including website and gamification utilities (Discord bot and small tools)."
+      "description": ""
     },
     "description": "An API integration with Gather Websocket to get statistics and create player interactions for the Codecon Online event.",
     "images": ["/images/codecon-gather-1.jpg"],
@@ -347,7 +347,7 @@
     },
     "aiUsage": {
       "level": "None",
-      "description": "Volunteer/open community work including website and gamification utilities (Discord bot and small tools)."
+      "description": ""
     },
     "description": "A Discord bot for the Codecon community, used to manage ranks, claims, and token management.",
     "images": ["/images/codecon-discord-bot-1.jpg"],
@@ -443,7 +443,7 @@
       "level": "None",
       "description": ""
     },
-    "description": "A website for the Corvos de Efrim community across multiple games such as Wakfu, Dofus and Waven.",
+    "description": "A website for the Corvos de Efrim, a guild presente in  multiple MMORPGs such as Wakfu, Dofus and Waven.",
     "images": ["/images/corvos-1.png"],
     "tags": ["Next.js", "Tailwind CSS"],
     "buttons": [
@@ -506,17 +506,17 @@
     ]
   },
   {
-    "title": "Mark Talks",
+    "title": "Talks & Portfolio",
     "date": "2025",
     "client": {
       "name": "Personal",
       "url": "https://markkop.dev/"
     },
     "aiUsage": {
-      "level": "Incremental",
-      "description": "Fork-based project adapted to manage his talks, using modern React tooling; likely AI‑assisted for migration and UI tweaks."
+      "level": "Full",
+      "description": ""
     },
-    "description": "A lightweight site to publish and manage slides and presentation metadata.",
+    "description": "This page!",
     "images": ["/images/mark-talks.png", "/images/mark-talks-github.png"],
     "tags": [
       "Remix",
@@ -552,7 +552,7 @@
     },
     "aiUsage": {
       "level": "Incremental",
-      "description": "Classic desktop app; later release notes mention converting CI from Travis to GitHub Actions with ChatGPT assistance."
+      "description": ""
     },
     "description": "Cross‑platform Electron application to download a YouTube video and cut a clip by time range, with optional MP3 export.",
     "images": ["/images/yt-dl.png", "/images/yt-dlandcut-github.png"],
