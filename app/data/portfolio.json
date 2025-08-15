@@ -585,7 +585,7 @@
       "level": "None",
       "description": ""
     },
-    "description": "Product search, recommendation, showcase and banners integrations",
+    "description": "As part of Linx team, I was responsible for the integration of the existing search, recommendation, showcase and banners products",
     "images": ["/images/lnx-1.png"],
     "tags": ["JavaScript", "PHP", "jQuery", "Vue.js"],
     "buttons": [
@@ -662,6 +662,30 @@
         "text": "Repo",
         "icon": "code",
         "url": "https://github.com/Markkop/decentraland-scene-test",
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "title": "Habitica Scripts",
+    "date": "2019",
+    "client": {
+      "name": "Personal",
+      "url": "https://markkop.dev/"
+    },
+    "aiUsage": {
+      "level": "None",
+      "description": ""
+    },
+    "description": "One of my first projects, a set of scripts to extend Habitica.com functionality. It features a Pomodoro Timer task, Custom Skills and keyboard shortcurs.",
+    "images": ["/images/habitica-1.jpg"],
+    "tags": ["JavaScript", "Habitica API"],
+    "buttons": [
+      {
+        "type": "view",
+        "text": "Repo",
+        "icon": "code",
+        "url": "https://github.com/Markkop/habiticaScripts",
         "enabled": true
       }
     ]
