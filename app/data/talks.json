@@ -9,9 +9,11 @@
     "feedbackLink": "",
     "coverImage": "https://res.cloudinary.com/dmslsrxjq/image/upload/v1786467467/codecon-events/events/mdjf2rd3duxsbaewpcfp.jpg",
     "tags": [
-      { "label": "self-hosting" },
-      { "label": "AI" },
-      { "label": "Codecon", "url": "https://codecon.dev/" }
+      { "label": "cursor", "url": "https://cursor.com" },
+      { "label": "codex", "url": "https://chatgpt.com/codex" },
+      { "label": "coolify", "url": "https://coolify.io" },
+      { "label": "hostinger", "url": "https://www.hostinger.com" },
+      { "label": "hermes", "url": "https://hermes-agent.nousresearch.com/docs/" }
     ],
     "topCover": false,
     "fit": "contain"
