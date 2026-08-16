@@ -13,7 +13,7 @@
       { "label": "AI" },
       { "label": "Codecon", "url": "https://codecon.dev/" }
     ],
-    "topCover": false
+    "topCover": true
   },
   {
     "title": "State of AI 2025",
