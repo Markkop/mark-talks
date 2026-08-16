@@ -1,5 +1,21 @@
 [
   {
+    "title": "Self-Hosting & AI Tooling",
+    "date": "2026-08-25",
+    "location": "Meetup Codecon FLN",
+    "locationLink": "https://eventos.codecon.dev/",
+    "description": "How to self-host AI tooling and keep your development workflow under your own control",
+    "presentationLink": "",
+    "feedbackLink": "",
+    "coverImage": "https://res.cloudinary.com/dmslsrxjq/image/upload/v1786467467/codecon-events/events/mdjf2rd3duxsbaewpcfp.jpg",
+    "tags": [
+      { "label": "self-hosting" },
+      { "label": "AI" },
+      { "label": "Codecon", "url": "https://codecon.dev/" }
+    ],
+    "topCover": false
+  },
+  {
     "title": "State of AI 2025",
     "date": "2025-03-22",
     "location": "Meetup FloripaJS",
