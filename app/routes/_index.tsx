@@ -21,8 +21,8 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const [searchParams, setSearchParams] = useSearchParams();
   const mode = searchParams.get("mode");
-  const isTalksMode = mode === "talks";
   const isPortfolioMode = mode === "portfolio";
+  const isTalksMode = !isPortfolioMode;
 
   const sortedTalks = [...talks].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -34,49 +34,25 @@ export default function Index() {
     (a, b) => parseInt(b.date) - parseInt(a.date)
   );
 
-  // Handle mode filtering
-  const allItems = (() => {
-    if (isTalksMode) {
-      return sortedTalks.map((talk) => ({ type: "talk" as const, item: talk }));
-    }
-    if (isPortfolioMode) {
-      return sortedPortfolio.map((item) => ({
+  const allItems = isPortfolioMode
+    ? sortedPortfolio.map((item) => ({
         type: "portfolio" as const,
         item,
-      }));
-    }
-    // Default: show everything sorted by date
-    return [
-      ...sortedTalks.map((talk) => ({ type: "talk" as const, item: talk })),
-      ...sortedPortfolio.map((item) => ({
-        type: "portfolio" as const,
-        item,
-      })),
-    ].sort((a, b) => {
-      const dateA =
-        a.type === "talk"
-          ? new Date(a.item.date)
-          : new Date(`${a.item.date}-01-01`);
-      const dateB =
-        b.type === "talk"
-          ? new Date(b.item.date)
-          : new Date(`${b.item.date}-01-01`);
-      return dateB.getTime() - dateA.getTime();
-    });
-  })();
+      }))
+    : sortedTalks.map((talk) => ({ type: "talk" as const, item: talk }));
 
   const toggleMode = (newMode: "talks" | "portfolio") => {
-    const currentMode = searchParams.get("mode");
+    const currentMode = searchParams.get("mode") ?? "talks";
+    const shouldResetToTalks = currentMode === newMode || newMode === "talks";
 
-    if (currentMode === newMode) {
-      // If clicking the same mode, reset (remove mode param)
-      const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.delete("mode");
-      setSearchParams(newSearchParams);
-    } else {
-      // Set the new mode
-      setSearchParams({ mode: newMode });
+    if (shouldResetToTalks) {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete("mode");
+      setSearchParams(nextParams);
+      return;
     }
+
+    setSearchParams({ mode: newMode });
   };
 
   return (
