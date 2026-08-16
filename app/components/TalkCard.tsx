@@ -14,7 +14,10 @@ import {
 } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 import { TagList, type Tag } from "~/components/common/TagList";
-import { ImageGallery } from "~/components/common/ImageGallery";
+import {
+  ImageGallery,
+  type ImageFit,
+} from "~/components/common/ImageGallery";
 import { CardButton } from "~/components/common/CardButton";
 import { CornerIcon } from "~/components/common/CornerIcon";
 
@@ -29,6 +32,7 @@ export interface Talk {
   coverImage: string;
   tags: Tag[];
   topCover?: boolean;
+  fit?: ImageFit;
 }
 
 const formatDate = (dateString: string) => {
@@ -73,6 +77,7 @@ export function TalkCard({ talk }: { talk: Talk }) {
         images={[talk.coverImage]}
         title={talk.title}
         topCover={talk.topCover}
+        fit={talk.fit}
       />
       <CardHeader className="pb-2 flex-shrink-0">
         <CardTitle className="line-clamp-2 text-base lg:text-sm text-secondary">

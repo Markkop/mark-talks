@@ -2,18 +2,27 @@ import { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "~/lib/utils";
 
+export type ImageFit = "cover" | "contain";
+
 interface ImageGalleryProps {
   images: string[];
   title: string;
   className?: string;
   topCover?: boolean;
+  fit?: ImageFit;
 }
+
+const objectFitClass: Record<ImageFit, string> = {
+  cover: "object-cover",
+  contain: "object-contain",
+};
 
 export function ImageGallery({
   images,
   title,
   className,
   topCover = true,
+  fit = "cover",
 }: ImageGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -30,13 +39,20 @@ export function ImageGallery({
   };
 
   return (
-    <div className={cn("relative h-52 w-full overflow-hidden", className)}>
+    <div
+      className={cn(
+        "relative h-52 w-full overflow-hidden",
+        fit === "contain" && "bg-black",
+        className
+      )}
+    >
       <img
         src={images[currentImageIndex]}
         alt={`${title} - ${currentImageIndex + 1}`}
         className={cn(
           "absolute inset-0 h-full w-full",
-          topCover ? "object-cover object-top" : "object-cover object-center"
+          objectFitClass[fit],
+          topCover ? "object-top" : "object-center"
         )}
       />
       {/* Mobile: no overlay (transparent). Desktop: show overlay, hide on hover */}
